@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+  # DB
+  recipes_database:
+    image: postgresql:latest
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: example
+  # DB Visualizer
+  adminer:
+    image: adminer:latest
+    restart: always
+    ports:
+      - 8080:8080
+# Server  
+
+volumes:
+  db_storage:

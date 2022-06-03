@@ -1,0 +1,4 @@
+packages:
+  - models
+  - interfaces/**
+  - libraries/**
