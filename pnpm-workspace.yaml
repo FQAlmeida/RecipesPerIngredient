@@ -1,4 +1,4 @@
 packages:
-  - models/**
-  - interfaces/**
+  - apps/**
+  - components/**
   - libraries/**
