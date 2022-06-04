@@ -3,7 +3,7 @@ version: '3'
 services:
   # DB
   recipes-database:
-    image: postgresql:latest
+    image: postgres:latest
     restart: always
     environment:
       POSTGRES_PASSWORD: example
@@ -14,8 +14,10 @@ services:
     ports:
       - 8080:8080
 # Server
-  rest-api:
-    
-
+  recipes-api:
+    container_name: recipes-api
+    build: 
+      context: .
+      dockerfile: .docker/rest-api.dev.dockerfile
 volumes:
   db-storage:

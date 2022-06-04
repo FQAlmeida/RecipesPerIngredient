@@ -1,9 +1,12 @@
 FROM node:18
 
-WORKDIR app
+RUN npm install -g pnpm
+
+WORKDIR /app
 
 ADD pnpm-workspace.yaml .
 ADD package.json .
+ADD .npmrc .
 
 RUN pnpm install
 
@@ -12,4 +15,4 @@ ADD apps/recipes-rest/ apps/recipes-rest
 
 RUN pnpm install
 
-CMD ["pnpm", "dev"]
+CMD ["pnpm", "-r", "dev"]
