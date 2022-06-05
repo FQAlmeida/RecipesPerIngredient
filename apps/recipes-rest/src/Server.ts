@@ -1,37 +1,22 @@
 import express from "express";
-import bodyParser from "body-parser";
-import cors from "cors";
-import expressWinston from "express-winston";
-import winston from "winston";
+import bodyParser from "./middlewares/BodyParser";
+import cors from "./middlewares/Cors";
 import RecipeController from "./controllers/RecipeController";
+import { winstonErrorLogger, winstonLogger } from "./middlewares/Winston";
+import swagger from "./middlewares/Swagger";
+import { appendFile } from "fs";
 
 const App = express();
 
 App.use(cors());
-App.use(bodyParser.json());
+App.use(bodyParser());
 
-App.use(expressWinston.logger({
-    transports: [
-        new winston.transports.Console()
-    ],
-    format: winston.format.combine(
-        winston.format.json()
-    ),
-    meta: false,
-    msg: "HTTP {{req.method}} {{res.statusCode}} {{req.url}} {{res.responseTime}}ms",
-    expressFormat: false,
-    colorize: false
-}));
+App.use(winstonLogger());
 
 App.use(new RecipeController().router);
 
-App.use(expressWinston.errorLogger({
-    transports: [
-        new winston.transports.Console()
-    ],
-    format: winston.format.combine(
-        winston.format.json()
-    )
-}));
+App.use("/docs", swagger.serve, swagger.setup());
+
+App.use(winstonErrorLogger());
 
 export default App;
