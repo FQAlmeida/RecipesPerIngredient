@@ -5,6 +5,20 @@ services:
   recipes-database:
     image: postgres:latest
     restart: always
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "pg_isready",
+          "-q",
+          "-d",
+          "postgres",
+          "-U",
+          "postgress"
+        ]
+      timeout: 45s
+      interval: 10s
+      retries: 10
     environment:
       POSTGRES_DB: postgress
       POSTGRES_USER: postgress
@@ -20,13 +34,20 @@ services:
     restart: always
     ports:
       - 8080:8080
-# Server
+    depends_on:
+      - recipes-database
+  # Server
   recipes-api:
     container_name: recipes-api
-    build: 
+    build:
       context: .
       dockerfile: .docker/rest-api.dev.dockerfile
+    # volumes:
+    #   - ./libraries:/app/libraries
+    #   - ./apps/recipes-rest:/app/apps/recipes-rest 
     ports:
       - 3001:3001
+    depends_on:
+      - recipes-database
 volumes:
   db-storage:

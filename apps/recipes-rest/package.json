@@ -5,7 +5,10 @@
   "scripts": {
     "dev": "tsnd src/main.ts",
     "test": "jest",
-    "lint": "eslint src/ --fix"
+    "lint": "eslint src/ --fix",
+    "migrate:dev": "npm explore database-connection -- pnpm migrate:dev",
+    "migrate:prod": "npm explore database-connection -- pnpm migrate:prod",
+    "generate": "npm explore database-connection -- pnpm generate"
   },
   "keywords": [],
   "author": "",
@@ -33,6 +36,7 @@
     "express-winston": "^4.2.0",
     "swagger-jsdoc": "^6.2.1",
     "swagger-ui-express": "^4.4.0",
-    "winston": "^3.7.2"
+    "winston": "^3.7.2",
+    "database-connection": "workspace:*"
   }
 }

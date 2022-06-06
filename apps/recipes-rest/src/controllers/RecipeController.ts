@@ -1,6 +1,7 @@
 import { Request, Router } from "express";
-import { Recipe } from "recipe-models/src/models/Recipe";
+import { Recipe, RecipeRegister } from "recipe-models/src/models/Recipe";
 import { RandomRecipeFactory } from "recipe-models/src/factories/RandomRecipeFactory";
+import { getRecipes as resolveRecipes } from "../persistence/getRecipes";
 
 export default class RecipeController {
     private path = "/recipes";
@@ -11,22 +12,44 @@ export default class RecipeController {
     }
 
     private intializeRoutes() {
-        this.router.get(`${this.path}/:id`, (req: Request<{ id: number; }>, res) => {
-            const id = req.params.id;
-            res.send(this.getRecipe(id));
+        this.router.get(`${this.path}/:id`, async (req: Request<{ id: string; }>, res, next) => {
+            const id = parseInt(req.params.id);
+            const recipe = await this.getRecipe(id);
+            if (recipe) {
+                res.send(recipe);
+                return;
+            }
+            res.statusCode = 404;
+            next();
         });
-        this.router.get(`${this.path}`, (_, res) => {
-            res.send(this.getRecipes());
+        this.router.get(`${this.path}`, (_, res, next) => {
+            const recipes = this.getRecipes();
+            if (recipes) {
+                res.send(recipes);
+                return;
+            }
+            res.statusCode = 404;
+            next();
         });
         this.router.post(`${this.path}`, (req: Request<unknown, unknown, Recipe>, res, next) => {
             const recipe = req.body;
-            res.statusCode = 201;
+            const recipe_register = this.createRecipe(recipe);
+            if (recipe_register) {
+                res.statusCode = 201;
+                res.send(recipe_register);
+                return;
+            }
+            res.statusCode = 400;
             next();
         });
     }
 
-    private getRecipe(id: number): Recipe {
-        const recipe = RandomRecipeFactory(id);
+    private async getRecipe(id: number): Promise<RecipeRegister | undefined> {
+        const recipe = await resolveRecipes([{
+            cod_recipe: {
+                equals: id
+            }
+        }]);
         return recipe;
     }
     private getRecipes(): Recipe[] {
@@ -34,8 +57,8 @@ export default class RecipeController {
         return recipes;
     }
 
-    private createRecipe(recipe: Recipe) {
+    private createRecipe(recipe: Recipe): RecipeRegister | undefined {
         // TODO: Add a recipe to the DB
-        
+        return;
     }
 }

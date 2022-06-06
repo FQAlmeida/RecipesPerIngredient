@@ -1,5 +1,7 @@
 FROM node:18
 
+RUN apt-get update && apt-get install wait-for-it
+
 RUN npm install -g pnpm
 
 WORKDIR /app
@@ -11,8 +13,13 @@ ADD .npmrc .
 RUN pnpm install
 
 ADD libraries/ libraries
-ADD apps/recipes-rest/ apps/recipes-rest 
-
 RUN pnpm install
 
-CMD ["pnpm", "-r", "dev"]
+ADD apps/recipes-rest/ apps/recipes-rest 
+RUN pnpm install
+
+WORKDIR /app/apps/recipes-rest/
+RUN chmod +x scripts/exec_migrate.sh
+ENTRYPOINT ["scripts/exec_migrate.sh"]
+
+CMD ["pnpm", "dev"]

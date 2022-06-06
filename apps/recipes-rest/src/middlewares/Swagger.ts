@@ -5,10 +5,10 @@ import path from "path";
 
 const options: swaggerJSDoc.Options = {
     definition: {
-        openapi: '3.0.0',
+        openapi: "3.0.0",
         info: {
-            title: 'Hello World',
-            version: '1.0.0',
+            title: "Hello World",
+            version: "1.0.0",
         },
     },
     apis: fs.readdirSync(path.resolve(__dirname, "..", "controllers")),

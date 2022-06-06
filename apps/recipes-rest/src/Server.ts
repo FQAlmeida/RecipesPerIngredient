@@ -4,7 +4,6 @@ import cors from "./middlewares/Cors";
 import RecipeController from "./controllers/RecipeController";
 import { winstonErrorLogger, winstonLogger } from "./middlewares/Winston";
 import swagger from "./middlewares/Swagger";
-import { appendFile } from "fs";
 
 const App = express();
 

@@ -1,3 +1,3 @@
-import cors from "cors"
+import cors from "cors";
 
-export default () => cors()
+export default () => cors();
