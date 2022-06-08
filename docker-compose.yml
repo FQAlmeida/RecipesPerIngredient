@@ -26,6 +26,8 @@ services:
       POSTGRES_DATA: /var/lib/postgresql/data/pgdata
     volumes:
       - db-storage:/var/lib/postgresql/data
+    networks:
+      - database
     ports:
       - "5432:5432"
   # DB Visualizer
@@ -36,6 +38,8 @@ services:
       - 8080:8080
     depends_on:
       - recipes-database
+    networks:
+      - database
   # Server
   recipes-api:
     container_name: recipes-api
@@ -49,5 +53,11 @@ services:
       - 3001:3001
     depends_on:
       - recipes-database
+    networks:
+      - database
 volumes:
   db-storage:
+
+networks:
+  client:
+  database:

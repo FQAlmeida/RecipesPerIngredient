@@ -29,6 +29,8 @@ model Step {
   cooking_time        String
   IngredientsStep     IngredientsStep[]
   ToolsStep           ToolsStep[]
+
+  @@unique([cod_recipe, cod_depends_on_step], name: "step_unique_dependency")
 }
 
 model Technique {
