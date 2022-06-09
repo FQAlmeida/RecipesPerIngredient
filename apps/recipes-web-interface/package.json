@@ -29,6 +29,7 @@
   },
   "dependencies": {
     "forms": "workspace:*",
+    "svelte-forms": "^2.3.1",
     "sveltik": "^0.1.16"
   },
   "type": "module"

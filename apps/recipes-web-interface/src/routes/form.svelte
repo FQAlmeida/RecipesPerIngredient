@@ -3,34 +3,43 @@
     import OptionBox from "forms/src/OptionBox.svelte";
     import NumberPicker from "forms/src/NumberPicker.svelte";
 
-    import {} from "sveltik"
+    import { form, field } from "svelte-forms";
 
-    import {
-        DifficultLevelEnum,
-        type Recipe,
-    } from "recipe-models/src/models/Recipe";
-    let recipe: Recipe = {
-        name: "",
-        difficult_level: {
-            difficult: DifficultLevelEnum.MEDIUM,
-        },
-        serves_adults: 2,
-        steps: [],
-    };
+    import { DifficultLevelEnum } from "recipe-models/src/models/Recipe";
+    import StepForm from "../libraries/StepForm.svelte";
     const options = Object.values(DifficultLevelEnum);
+
+    let stepsCount = 1;
+
+    const recipeName = field("recipeName", "");
+    const recipeDifficulty = field<DifficultLevelEnum>(
+        "recipeDifficulty",
+        DifficultLevelEnum.MEDIUM
+    );
+    const recipeServesAdults = field<number>("recipeServesAdults", 2);
+
+    const recipeForm = form(recipeName, recipeDifficulty, recipeServesAdults);
 </script>
 
-<Sveltik>
-    <TextBox id="txtRecipeName" label="Recipe Name" bind:value={recipe.name} />
+<section>
+    <TextBox
+        id="txtRecipeName"
+        label="Recipe Name"
+        bind:value={$recipeName.value}
+    />
     <OptionBox
         id="selectRecipeDifficult"
         label="Difficulty"
-        bind:selectedValue={recipe.difficult_level.difficult}
+        bind:selectedValue={$recipeDifficulty.value}
         {options}
     />
     <NumberPicker
         id="numberPickerServesAdults"
         label="Serves Adults"
-        bind:value={recipe.serves_adults}
+        bind:value={$recipeServesAdults.value}
     />
-</div>
+    {#each { length: stepsCount } as _, index}
+        <StepForm getStep={() => {}} stepId={index} />
+    {/each}
+    <button on:click={() => (stepsCount += 1)}>Add Step</button>
+</section>
