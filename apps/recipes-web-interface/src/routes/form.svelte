@@ -1,6 +1,8 @@
 <script lang="ts">
     import TextBox from "forms/src/TextBox.svelte";
     import OptionBox from "forms/src/OptionBox.svelte";
+    import NumberPicker from "forms/src/NumberPicker.svelte";
+
     import {
         DifficultLevelEnum,
         type Recipe,
@@ -13,12 +15,20 @@
         serves_adults: 2,
         steps: [],
     };
-    const options = Object.values(DifficultLevelEnum)
-    console.log(options);
-    
+    const options = Object.values(DifficultLevelEnum);
 </script>
 
 <div>
     <TextBox id="txtRecipeName" label="Recipe Name" bind:value={recipe.name} />
-    <OptionBox id="selectDifficult" label="Difficulty" bind:selectedValue={recipe.difficult_level.difficult} {options}/>
+    <OptionBox
+        id="selectRecipeDifficult"
+        label="Difficulty"
+        bind:selectedValue={recipe.difficult_level.difficult}
+        {options}
+    />
+    <NumberPicker
+        id="numberPickerServesAdults"
+        label="Serves Adults"
+        bind:value={recipe.serves_adults}
+    />
 </div>

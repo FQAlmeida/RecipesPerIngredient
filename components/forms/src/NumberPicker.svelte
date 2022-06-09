@@ -1,8 +1,8 @@
 <script lang="ts">
     export let id: string;
     export let label: string;
-    export let value: string;
+    export let value: number;
 </script>
 
 <label for={id}>{label}:</label>
-<input type="text" {id} name={id} bind:value />
+<input type="number" {id} name={id} bind:value />
