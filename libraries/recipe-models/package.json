@@ -8,10 +8,10 @@
         "luxon": "^2.4.0"
     },
     "devDependencies": {
-        "@faker-js/faker": "^7.1.0",
+        "@faker-js/faker": "^7.2.0",
         "@types/luxon": "^2.3.2",
-        "@typescript-eslint/eslint-plugin": "^5.27.0",
-        "@typescript-eslint/parser": "^5.27.0",
-        "eslint": "^8.16.0"
+        "@typescript-eslint/eslint-plugin": "^5.27.1",
+        "@typescript-eslint/parser": "^5.27.1",
+        "eslint": "^8.17.0"
     }
 }

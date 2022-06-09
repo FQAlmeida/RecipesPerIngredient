@@ -26,6 +26,7 @@ export async function getRecipes(args: Parameters<typeof getRecipesFromDB>) {
             description: technique.description
         };
     };
+
     const recipe: RecipeRegister = {
         cod: recipe_data.cod_recipe,
         name: recipe_data.name,

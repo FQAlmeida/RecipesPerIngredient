@@ -1,7 +1,7 @@
-import Server from "./Server";
+import server from "./Server";
 
 const PORT = process.env.port || 3001;
 
-Server.listen(PORT, () => {
+server.listen(PORT, () => {
     console.log(`Listening at port ${PORT}`);
 });

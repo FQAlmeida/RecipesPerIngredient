@@ -3,10 +3,10 @@
   "version": "1.0.0",
   "license": "MIT",
   "devDependencies": {
-    "prisma": "3.12.0",
-    "ts-node": "10.7.0",
-    "typescript": "4.6.3",
-    "@types/node": "16.11.26"
+    "@types/node": "17.0.41",
+    "prisma": "3.15.0",
+    "ts-node": "10.8.1",
+    "typescript": "4.7.3"
   },
   "scripts": {
     "migrate:dev": "prisma migrate dev",
@@ -14,6 +14,6 @@
     "generate": "prisma generate"
   },
   "dependencies": {
-    "@prisma/client": "3.12.0"
+    "@prisma/client": "3.15.0"
   }
 }
