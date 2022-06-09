@@ -3,6 +3,8 @@
     import OptionBox from "forms/src/OptionBox.svelte";
     import NumberPicker from "forms/src/NumberPicker.svelte";
 
+    import {} from "sveltik"
+
     import {
         DifficultLevelEnum,
         type Recipe,
@@ -18,7 +20,7 @@
     const options = Object.values(DifficultLevelEnum);
 </script>
 
-<div>
+<Sveltik>
     <TextBox id="txtRecipeName" label="Recipe Name" bind:value={recipe.name} />
     <OptionBox
         id="selectRecipeDifficult"
