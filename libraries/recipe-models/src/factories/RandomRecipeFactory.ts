@@ -121,7 +121,14 @@ export function RandomRecipeFactory(id?: number): RecipeRegister {
         cod: id || faker.mersenne.rand(),
         name: faker.name.middleName(),
         difficult_level: RandomDifficultyLevel(),
-        serves_adults: 2,
+        serves_adults: faker.mersenne.rand(4, 1),
         steps: RandomStepsFactory(faker.mersenne.rand(3, 10))
     };
+}
+export function RandomRecipesFactory(qtd_recipes: number): RecipeRegister[] {
+    const recipes = Array<RecipeRegister>(qtd_recipes);
+    for (let index = 0; index < recipes.length; index++) {
+        recipes[index] = RandomRecipeFactory();
+    }
+    return recipes;
 }

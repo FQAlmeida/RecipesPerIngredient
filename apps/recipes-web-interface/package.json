@@ -25,12 +25,12 @@
     "svelte-check": "^2.7.2",
     "svelte-preprocess": "^4.10.7",
     "tslib": "^2.4.0",
-    "typescript": "^4.7.3"
+    "typescript": "^4.7.3",
+    "recipes-components-svelte": "workspace:*"
   },
   "dependencies": {
     "forms": "workspace:*",
-    "svelte-forms": "^2.3.1",
-    "sveltik": "^0.1.16"
+    "svelte-forms": "^2.3.1"
   },
   "type": "module"
 }
