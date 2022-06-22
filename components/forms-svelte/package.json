@@ -1,5 +1,5 @@
 {
-	"name": "forms",
+	"name": "forms-svelte",
 	"version": "1.0.1",
 	"scripts": {
 		"prepare": "svelte-kit sync",

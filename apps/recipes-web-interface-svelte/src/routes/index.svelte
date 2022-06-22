@@ -8,12 +8,8 @@
         return {
             recipeName: recipe.name,
             recipeImageUri: RandomMediaFactory(recipe.cod).source,
-            cooking_time: recipe.steps.reduce((current_duration, step) => {
-                return current_duration.plus(step.cooking_time);
-            }, Duration.fromObject({ seconds: 0 })),
-            preparation_time: recipe.steps.reduce((current_duration, step) => {
-                return current_duration.plus(step.preparation_time);
-            }, Duration.fromObject({ seconds: 0 })),
+            cooking_time: recipe.cooking_time,
+            preparation_time: recipe.preparation_time,
             difficulty: recipe.difficult_level.difficult.toString(),
             serves_adults: recipe.serves_adults,
         };

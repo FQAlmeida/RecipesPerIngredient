@@ -9,7 +9,7 @@
     export let recipes: {
         recipeName: string;
 
-        cooking_time: Duration;
+        cooking_time?: Duration;
         preparation_time: Duration;
 
         difficulty: "easy" | "medium" | "hard" | string;

@@ -26,15 +26,7 @@ export function RandomTechniqueFactory(): TechniqueRegister {
 export function RandomStepFactory(depends_on?: StepRegister): StepRegister {
     return {
         cod: faker.mersenne.rand(),
-        cooking_time: Duration.fromObject({
-            minutes: faker.mersenne.rand(1, 40)
-        }),
-        preparation_time: Duration.fromObject({
-            minutes: faker.mersenne.rand(1, 40)
-        }),
         description: faker.lorem.paragraph(),
-        ingredients: RandomIngredientsFactory(faker.mersenne.rand(1, 5)),
-        tools: RandomToolsFactory(faker.mersenne.rand(0, 3)),
         technique: RandomTechniqueFactory(),
         depends_on: depends_on?.cod
     };
@@ -122,7 +114,15 @@ export function RandomRecipeFactory(id?: number): RecipeRegister {
         name: faker.name.middleName(),
         difficult_level: RandomDifficultyLevel(),
         serves_adults: faker.mersenne.rand(4, 1),
-        steps: RandomStepsFactory(faker.mersenne.rand(3, 10))
+        steps: RandomStepsFactory(faker.mersenne.rand(3, 10)),
+        cooking_time: Duration.fromObject({
+            minutes: faker.mersenne.rand(1, 40)
+        }),
+        preparation_time: Duration.fromObject({
+            minutes: faker.mersenne.rand(1, 40)
+        }),
+        ingredients: RandomIngredientsFactory(faker.mersenne.rand(1, 5)),
+        tools: RandomToolsFactory(faker.mersenne.rand(0, 3)),
     };
 }
 export function RandomRecipesFactory(qtd_recipes: number): RecipeRegister[] {

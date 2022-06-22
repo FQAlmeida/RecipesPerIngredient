@@ -1,7 +1,7 @@
 <script lang="ts">
-    import TextBox from "forms/src/TextBox.svelte";
-    import OptionBox from "forms/src/OptionBox.svelte";
-    import NumberPicker from "forms/src/NumberPicker.svelte";
+    import TextBox from "forms-svelte/src/TextBox.svelte";
+    import OptionBox from "forms-svelte/src/OptionBox.svelte";
+    import NumberPicker from "forms-svelte/src/NumberPicker.svelte";
 
     import { form, field } from "svelte-forms";
 

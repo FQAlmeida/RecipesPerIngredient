@@ -4,8 +4,8 @@ export enum MeasureUnitEnum {
     KG = "killogram",
     G = "gram",
     MG = "milligram",
-    ML = "Milliliter",
-    L = "Liter"
+    ML = "milliliter",
+    L = "liter"
 }
 
 export interface MeasureUnit {
