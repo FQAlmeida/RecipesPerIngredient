@@ -6,9 +6,9 @@ import { Technique } from "./Technique";
 import { Tool, ToolRegister } from "./Tool";
 
 export enum DifficultLevelEnum {
-    EASY = "easy",
-    MEDIUM = "medium",
-    HARD = "hard"
+    EASY = "Easy",
+    MEDIUM = "Medium",
+    HARD = "Hard"
 }
 
 export interface DifficultLevel {

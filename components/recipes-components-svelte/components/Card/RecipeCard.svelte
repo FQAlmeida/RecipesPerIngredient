@@ -11,7 +11,7 @@
     export let recipe: {
         recipeName: string;
 
-        cooking_time: Duration;
+        cooking_time?: Duration;
         preparation_time: Duration;
 
         difficulty: "easy" | "medium" | "hard" | string;
@@ -39,11 +39,13 @@
                 .shiftTo("minutes")
                 .toHuman()}</Badge
         >
-        <Badge
-            >Cook Time: {recipe.cooking_time
-                .shiftTo("minutes")
-                .toHuman({})}</Badge
-        >
+        {#if recipe.cooking_time}
+            <Badge
+                >Cook Time: {recipe.cooking_time
+                    .shiftTo("minutes")
+                    .toHuman({})}</Badge
+            >
+        {/if}
     </CardFooter>
 </Card>
 
