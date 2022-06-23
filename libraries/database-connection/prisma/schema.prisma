@@ -14,7 +14,7 @@ model Recipe {
   cod_difficulty_level Int
   steps                Step[]
   preparation_time     String
-  cooking_time         String
+  cooking_time         String?
   ingredients_recipe   IngredientsRecipe[]
   tools_recipe         ToolsRecipe[]
 }
