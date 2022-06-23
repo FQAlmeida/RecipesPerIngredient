@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 import { IngredientFilterInput } from "../IngredientsInput";
 
@@ -8,40 +8,60 @@ import {
     Stack
 } from "@mui/material";
 
+type inputValuesType = { [key: number]: string; };
+
 export function IngredientsFilterForm() {
-    const [inputValues, setInputs] = useState<{ [key: React.Key]: string }>(
+    const [inputValues, setInputs] = useState<inputValuesType>(
         { 0: "" }
     );
-    const renderInputs = () => {
+    const renderInputs = (values: inputValuesType) => {
         const renderedInputs = [];
-        for (const key in inputValues) {
-            const value = inputValues[key];
+        for (let key in values) {
+            const value = values[key];
             renderedInputs.push(
-                <IngredientFilterInput key={key} valueKey={key} value={value} onChange={handleInputChange} />
+                <IngredientFilterInput
+                    key={key}
+                    valueKey={parseInt(key, 10)}
+                    value={value}
+                    onChange={handleInputChange}
+                    onRemove={handleDeleteInput}
+                />
             );
         }
         return renderedInputs;
     };
-    const handleInputChange = (key: React.Key, newValue: string) => {
-        const newState = Object.assign({}, inputValues);
-        newState[key] = newValue;
-        setInputs(newState);
+    const handleInputChange = (key: number, newValue: string) => {
+        setInputs(oldValues => {
+            const filteredValues = oldValues;
+            filteredValues[key] = newValue;
+            const newState = Object.assign(Object.create(null), filteredValues);
+            return newState;
+        });
     };
     const handleAddInput = () => {
-        const biggestKey = Object.keys(inputValues).reduce((previous, current) => {
-            const currentValue = parseInt(current, 10);
-            return previous > currentValue ? previous : currentValue;
-        }, 0);
-        const newKey = biggestKey + 1;
-        const newEntry = Object.create({});
-        newEntry[newKey] = "a";
-        const newState = Object.assign(inputValues, newEntry);
-        setInputs(newState);
+        setInputs(oldValues => {
+            const filteredValues = oldValues;
+            const oldKeys = Object.keys(filteredValues);
+            const parsedOldKeys = oldKeys.map((value) => parseInt(value, 10));
+            const biggestKey = Math.max(...parsedOldKeys, 0);
+            const newKey = biggestKey + 1;
+            filteredValues[newKey] = "";
+            const newState = Object.assign(Object.create(null), filteredValues);
+            return newState;
+        });
+    };
+    const handleDeleteInput = (key: number) => {
+        setInputs(oldValues => {
+            const filteredValues = oldValues;
+            delete filteredValues[key];
+            const newState = Object.assign(Object.create(null), filteredValues);
+            return newState;
+        });
     };
     return (
         <Container>
             <Stack spacing={2}>
-                {renderInputs()}
+                {renderInputs(inputValues)}
                 <Button onClick={handleAddInput} variant="outlined">
                     Adicionar
                 </Button>
