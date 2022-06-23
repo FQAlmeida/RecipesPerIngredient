@@ -1,6 +1,6 @@
 {
   "name": "database-connection",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "license": "MIT",
   "devDependencies": {
     "@types/node": "17.0.41",
