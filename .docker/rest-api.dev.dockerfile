@@ -1,7 +1,5 @@
 FROM node:18
 
-RUN apt-get update && apt-get install wait-for-it
-
 RUN npm install -g pnpm
 
 WORKDIR /app
