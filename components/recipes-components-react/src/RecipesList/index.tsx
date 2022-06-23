@@ -2,7 +2,7 @@ import React from "react";
 
 import { Container, Grid } from "@mui/material";
 
-import { RecipeCard } from "../RecipeCard/RecipeCard";
+import { RecipeCard } from "../RecipeCard";
 import { RecipeData } from "../types/RecipeData";
 
 export function RecipeList(props: { recipes: RecipeData[]; }) {
