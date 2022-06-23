@@ -3,12 +3,12 @@ import React from "react";
 import { Card, CardContent, CardActionArea, CardMedia, Typography, Chip, Grid } from "@mui/material";
 
 import {
-    Face as FaceIcon,
-    AccessTime as AccessTimeIcon,
-    Cookie as CookieIcon,
-    SignalCellular0Bar as SignalCellular0BarIcon,
-    SignalCellular2Bar as SignalCellular2BarIcon,
-    SignalCellular3Bar as SignalCellular3BarIcon,
+    FaceTwoTone as FaceIcon,
+    AccessTimeTwoTone as AccessTimeIcon,
+    CookieTwoTone as CookieIcon,
+    SignalCellular0BarTwoTone as SignalCellular0BarIcon,
+    SignalCellular2BarTwoTone as SignalCellular2BarIcon,
+    SignalCellular3BarTwoTone as SignalCellular3BarIcon,
 } from "@mui/icons-material";
 import { DifficultLevelEnum } from "recipe-models/src/models/Recipe";
 import { RecipeData } from "../types/RecipeData";

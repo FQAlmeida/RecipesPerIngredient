@@ -1,7 +1,7 @@
 import React from "react";
 
 import { Divider, IconButton, Paper, Stack, TextField } from "@mui/material";
-import { Delete as DeleteIcon } from "@mui/icons-material";
+import { DeleteTwoTone as DeleteIcon } from "@mui/icons-material";
 
 interface IngredientFilterInputProps {
     value: string,
@@ -25,7 +25,7 @@ export function IngredientFilterInput(props: IngredientFilterInputProps) {
                         onChange(valueKey, event.target.value, value);
                     }}
                 />
-                <Divider />
+                <Divider orientation="vertical" sx={{ height: 32, m: 0.5 }} />
                 <IconButton sx={{ p: '8px' }} onClick={() => { onRemove(valueKey); }}>
                     <DeleteIcon />
                 </IconButton>
