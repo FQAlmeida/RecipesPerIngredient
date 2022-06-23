@@ -62,7 +62,7 @@ export function IngredientsFilterForm() {
         <Container>
             <Stack spacing={2}>
                 {renderInputs(inputValues)}
-                <Button onClick={handleAddInput} variant="outlined">
+                <Button onClick={handleAddInput} variant="contained" color="primary">
                     Adicionar
                 </Button>
             </Stack>
