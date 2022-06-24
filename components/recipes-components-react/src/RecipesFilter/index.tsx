@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import { IngredientFilterInput } from "../IngredientsInput";
 
@@ -9,14 +9,22 @@ import {
 } from "@mui/material";
 
 type inputValuesType = { [key: number]: string; };
+interface IngredientsFilterFormProps {
+    onIngredientsChange: (ingredients: string[]) => void
+}
 
-export function IngredientsFilterForm() {
+export function IngredientsFilterForm(props: IngredientsFilterFormProps) {
     const [inputValues, setInputs] = useState<inputValuesType>(
         { 0: "" }
     );
+
+    useEffect(() => {
+        props.onIngredientsChange(getIngredients());
+    }, [inputValues]);
+
     const renderInputs = (values: inputValuesType) => {
         const renderedInputs = [];
-        for (let key in values) {
+        for (const key in values) {
             const value = values[key];
             renderedInputs.push(
                 <IngredientFilterInput
@@ -57,6 +65,16 @@ export function IngredientsFilterForm() {
             const newState = Object.assign(Object.create(null), filteredValues);
             return newState;
         });
+    };
+
+    const getIngredients = (): string[] => {
+        const ingredients = []; 
+        for (const value of Object.values(inputValues)) {
+            if (value && value.length > 0) {
+                ingredients.push(value);
+            }
+        }
+        return ingredients;
     };
     return (
         <Container>

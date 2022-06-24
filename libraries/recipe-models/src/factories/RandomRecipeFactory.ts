@@ -125,6 +125,7 @@ export function RandomRecipeFactory(id?: number): RecipeRegister {
         tools: RandomToolsFactory(faker.mersenne.rand(0, 3)),
     };
 }
+
 export function RandomRecipesFactory(qtd_recipes: number): RecipeRegister[] {
     const recipes = Array<RecipeRegister>(qtd_recipes);
     for (let index = 0; index < recipes.length; index++) {
