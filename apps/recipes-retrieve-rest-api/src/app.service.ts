@@ -24,9 +24,12 @@ export class AppService {
         }
       }
     };
-    return await fetch("persistence_uri", { // TODO: Setup docker to resolve uri
+    const response = await fetch("persistence_uri", { // TODO: Setup docker to resolve uri
       body: JSON.stringify(payload)
     });
+    const responseJson = await response.json();
+    const recipes = parseRecipes(responseJson);
+    return recipes;
   }
   async getTop(qtd: number) {
     const payload: GetRecipesParamsType = { take: qtd };
