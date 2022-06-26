@@ -7,7 +7,7 @@ import {
 
 @Injectable()
 export class AppService {
-  async getRecipes(request: GetRecipesParamsType): GetRecipesReturnType {
+  async getRecipes(request: GetRecipesParamsType): Promise<GetRecipesReturnType> {
     return await getRecipesFromDb(request);
   }
 }

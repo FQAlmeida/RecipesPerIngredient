@@ -3,7 +3,8 @@ import { PrismaClient, Prisma } from "@prisma/client";
 const prisma = new PrismaClient();
 
 export type GetRecipesParamsType = { filter?: Prisma.RecipeWhereInput, take?: number; };
-export type GetRecipesReturnType = ReturnType<typeof getRecipes>;
+type UnboxPromise<T extends Promise<unknown>> = T extends Promise<infer U> ? U : never;
+export type GetRecipesReturnType = UnboxPromise<ReturnType<typeof getRecipes>>;
 
 export async function getRecipes(args: GetRecipesParamsType) {
     return await prisma.recipe.findMany({

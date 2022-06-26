@@ -17,9 +17,9 @@ export class AppController {
 
   @Post()
   @HttpCode(200)
-  getRecipes(@Req() request: GetRecipesRequestBody)
-    : GetRecipesReturnType {
+  async getRecipes(@Req() request: GetRecipesRequestBody)
+    : Promise<GetRecipesReturnType> {
     const body: GetRecipesParamsType = JSON.parse(request.body);
-    return this.appService.getRecipes(body);
+    return await this.appService.getRecipes(body);
   }
 }
