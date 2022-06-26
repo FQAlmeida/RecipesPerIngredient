@@ -46,8 +46,10 @@ export default class RecipeController {
 
     private async getRecipe(id: number): Promise<RecipeRegister | undefined> {
         const recipe = await resolveRecipes([{
-            cod_recipe: {
-                equals: id
+            filter: {
+                cod_recipe: {
+                    equals: id
+                }
             }
         }]);
         return recipe;

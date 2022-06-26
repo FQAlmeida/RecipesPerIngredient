@@ -2,12 +2,14 @@ import { PrismaClient, Prisma } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
-export type GetFilterType = Prisma.RecipeWhereInput;
-export type GetReturnType = ReturnType<typeof getRecipes>;
+export type GetRecipesParamsType = { filter?: Prisma.RecipeWhereInput, take?: number; };
+export type GetRecipesReturnType = ReturnType<typeof getRecipes>;
 
-export async function getRecipes(filter: Prisma.RecipeWhereInput) {
+export async function getRecipes(args: GetRecipesParamsType) {
     return await prisma.recipe.findMany({
-        where: filter, include: {
+        where: args.filter,
+        take: args.take,
+        include: {
             difficulty_level: true,
             ingredients_recipe: {
                 include: {
