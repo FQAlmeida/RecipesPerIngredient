@@ -1,0 +1,18 @@
+{
+  "name": "contract-types",
+  "version": "1.0.0",
+  "main": "index.ts",
+  "scripts": {},
+  "keywords": [],
+  "author": "FQA",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^18.0.0",
+    "@typescript-eslint/eslint-plugin": "^5.30.0",
+    "@typescript-eslint/parser": "^5.30.0",
+    "database-connection": "workspace:*",
+    "eslint": "^8.18.0",
+    "recipe-models": "workspace:^1.0.0",
+    "typescript": "^4.7.4"
+  }
+}

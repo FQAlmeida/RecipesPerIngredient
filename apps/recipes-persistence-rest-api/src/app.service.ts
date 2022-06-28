@@ -1,9 +1,10 @@
 import { Injectable } from '@nestjs/common';
 import {
-  GetRecipesParamsType,
-  GetRecipesReturnType,
   getRecipes as getRecipesFromDb,
 } from 'database-connection/src/interface';
+import {
+  GetRecipesParamsType, GetRecipesReturnType
+} from "contract-types";
 
 @Injectable()
 export class AppService {

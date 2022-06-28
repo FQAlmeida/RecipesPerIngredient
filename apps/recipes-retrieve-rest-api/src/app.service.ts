@@ -1,11 +1,12 @@
 import { Injectable } from "@nestjs/common";
 
-import { GetRecipesParamsType, GetRecipesReturnType } from "database-connection/src/interface";
-import { IngredientRegister } from "recipe-models/src/models/Ingredient";
-import { RecipeRegister } from "recipe-models/src/models/Recipe";
-import { StepRegister } from "recipe-models/src/models/Step";
-import { TechniqueRegister } from "recipe-models/src/models/Technique";
-import { ToolRegister } from "recipe-models/src/models/Tool";
+import { GetRecipesParamsType, GetRecipesReturnType } from "contract-types";
+
+import { IngredientRegister } from "recipe-models";
+import { RecipeRegister } from "recipe-models";
+import { StepRegister } from "recipe-models";
+import { TechniqueRegister } from "recipe-models";
+import { ToolRegister } from "recipe-models";
 import { convertToDuration } from "recipe-models/src/utils/convert_to_interval";
 
 @Injectable()
@@ -25,7 +26,8 @@ export class AppService {
       }
     };
     const response = await fetch("persistence_uri", { // TODO: Setup docker to resolve uri
-      body: JSON.stringify(payload)
+      body: JSON.stringify(payload),
+      method: "POST"
     });
     const responseJson = await response.json();
     const recipes = parseRecipes(responseJson);
@@ -34,7 +36,8 @@ export class AppService {
   async getTop(qtd: number) {
     const payload: GetRecipesParamsType = { take: qtd };
     const response = await fetch("persistence_uri", { // TODO: Setup docker to resolve uri
-      body: JSON.stringify(payload)
+      body: JSON.stringify(payload),
+      method: "POST"
     });
     const responseJson: GetRecipesReturnType = await response.json();
     const recipes = parseRecipes(responseJson);

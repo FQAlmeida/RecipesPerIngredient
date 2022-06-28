@@ -1,15 +1,7 @@
-import { Controller, HttpCode, Post, Req } from '@nestjs/common';
-import { GetRecipesParamsType, GetRecipesReturnType } from 'database-connection/src/interface';
+import { Body, Controller, HttpCode, Post, Req } from '@nestjs/common';
 import { Request } from 'express';
+import { GetRecipesParamsType, GetRecipesReturnType } from 'contract-types';
 import { AppService } from './app.service';
-
-// type FisrtParam<
-//   T extends (...args: any) => any
-// > = Parameters<T> extends [infer Head, ...infer _] ?
-//   Head :
-//   never;
-type RequestBody<T> = Request<unknown, unknown, T>;
-export type GetRecipesRequestBody = RequestBody<string>;
 
 @Controller()
 export class AppController {
@@ -17,9 +9,8 @@ export class AppController {
 
   @Post()
   @HttpCode(200)
-  async getRecipes(@Req() request: GetRecipesRequestBody)
+  async getRecipes(@Body() payload: GetRecipesParamsType)
     : Promise<GetRecipesReturnType> {
-    const body: GetRecipesParamsType = JSON.parse(request.body);
-    return await this.appService.getRecipes(body);
+    return await this.appService.getRecipes(payload);
   }
 }

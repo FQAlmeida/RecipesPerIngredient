@@ -1,6 +1,7 @@
 {
     "name": "recipe-models",
     "version": "1.0.0",
+    "main": "src/index.ts",
     "scripts": {
         "lint": "eslint **/*.ts --fix"
     },
