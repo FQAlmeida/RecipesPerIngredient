@@ -1,0 +1,67 @@
+{
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libraries/database-connection/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/js:tsc",
+      "outputs": [
+        "{options.outputPath}"
+      ],
+      "options": {
+        "outputPath": "dist/libraries/database-connection",
+        "main": "libraries/database-connection/src/index.ts",
+        "tsConfig": "libraries/database-connection/tsconfig.lib.json",
+        "assets": [
+          "libraries/database-connection/*.md"
+        ]
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": [
+        "{options.outputFile}"
+      ],
+      "options": {
+        "lintFilePatterns": [
+          "libraries/database-connection/**/*.ts"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": [
+        "coverage/libraries/database-connection"
+      ],
+      "options": {
+        "jestConfig": "libraries/database-connection/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "migrate-save": {
+      "builder": "@nrwl/workspace:run-commands",
+      "outputs": [],
+      "options": {
+        "command": "npx prisma migrate save --experimental --schema ./prisma/schema.prisma",
+        "cwd": "libraries/database-connection"
+      }
+    },
+    "migrate-up": {
+      "builder": "@nrwl/workspace:run-commands",
+      "outputs": [],
+      "options": {
+        "command": "npx prisma migrate up --experimental --schema ./prisma/schema.prisma",
+        "cwd": "libraries/database-connection"
+      }
+    },
+    "gen-client": {
+      "builder": "@nrwl/workspace:run-commands",
+      "outputs": [],
+      "options": {
+        "commands": ["npx prisma generate --schema ./prisma/schema.prisma"],
+        "cwd": "libraries/database-connection"
+      }
+    }
+  },
+  "tags": []
+}
