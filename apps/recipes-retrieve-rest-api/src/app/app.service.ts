@@ -1,5 +1,5 @@
 import { Injectable } from "@nestjs/common";
-import { GetRecipesParamsType, GetRecipesReturnType } from "@recipes-per-ingredient/database-connection";
+import { GetRecipesParamsType, GetRecipesReturnType } from "@recipes-per-ingredient/contracts-types";
 import {
   convertToDuration
 } from "@recipes-per-ingredient/recipes-models";

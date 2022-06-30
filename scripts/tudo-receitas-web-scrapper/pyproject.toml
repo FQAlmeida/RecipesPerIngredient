@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "tudo-receitas-web-scrapper"
+version = "1.0.0"
+description = ""
+authors = ["FQA <otavioalmeida650@protonmail.ch>"]
+license = "MIT"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+Scrapy = "^2.6.1"
+beautifulsoup4 = "^4.11.1"
+
+[tool.poetry.dev-dependencies]
+autopep8 = "^1.6.0"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
