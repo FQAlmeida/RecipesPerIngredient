@@ -2,7 +2,9 @@
   "name": "recipes-per-ingredient",
   "version": "1.0.0",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "preinstall": "npx only-allow pnpm"
+  },
   "private": true,
   "devDependencies": {
     "@emotion/react": "^11.9.3",

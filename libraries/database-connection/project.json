@@ -8,6 +8,9 @@
       "outputs": [
         "{options.outputPath}"
       ],
+      "dependsOn": [
+        "gen-client"
+      ],
       "options": {
         "outputPath": "dist/libraries/database-connection",
         "main": "libraries/database-connection/src/index.ts",
@@ -42,7 +45,7 @@
       "builder": "@nrwl/workspace:run-commands",
       "outputs": [],
       "options": {
-        "command": "npx prisma migrate save --experimental --schema ./prisma/schema.prisma",
+        "command": "pnpx prisma migrate save --experimental --schema ./prisma/schema.prisma",
         "cwd": "libraries/database-connection"
       }
     },
@@ -50,7 +53,7 @@
       "builder": "@nrwl/workspace:run-commands",
       "outputs": [],
       "options": {
-        "command": "npx prisma migrate up --experimental --schema ./prisma/schema.prisma",
+        "command": "pnpx prisma migrate up --experimental --schema ./prisma/schema.prisma",
         "cwd": "libraries/database-connection"
       }
     },
@@ -58,7 +61,7 @@
       "builder": "@nrwl/workspace:run-commands",
       "outputs": [],
       "options": {
-        "commands": ["npx prisma generate --schema ./prisma/schema.prisma"],
+        "commands": ["pnpx prisma generate --schema ./prisma/schema.prisma"],
         "cwd": "libraries/database-connection"
       }
     }
