@@ -2,10 +2,15 @@
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "apps/recipes-web-interface",
   "projectType": "application",
+  "implicitDependencies": [
+    "recipes-retrieve-rest-api"
+  ],
   "targets": {
     "build": {
       "executor": "@nrwl/next:build",
-      "outputs": ["{options.outputPath}"],
+      "outputs": [
+        "{options.outputPath}"
+      ],
       "defaultConfiguration": "production",
       "options": {
         "root": "apps/recipes-web-interface",
@@ -42,7 +47,9 @@
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/apps/recipes-web-interface"],
+      "outputs": [
+        "coverage/apps/recipes-web-interface"
+      ],
       "options": {
         "jestConfig": "apps/recipes-web-interface/jest.config.ts",
         "passWithNoTests": true
@@ -50,9 +57,13 @@
     },
     "lint": {
       "executor": "@nrwl/linter:eslint",
-      "outputs": ["{options.outputFile}"],
+      "outputs": [
+        "{options.outputFile}"
+      ],
       "options": {
-        "lintFilePatterns": ["apps/recipes-web-interface/**/*.{ts,tsx,js,jsx}"]
+        "lintFilePatterns": [
+          "apps/recipes-web-interface/**/*.{ts,tsx,js,jsx}"
+        ]
       }
     }
   },

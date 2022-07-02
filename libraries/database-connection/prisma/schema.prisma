@@ -17,6 +17,7 @@ model Recipe {
   cooking_time         String?
   ingredients_recipe   IngredientsRecipe[]
   tools_recipe         ToolsRecipe[]
+  serves_adults        Int
 }
 
 model Step {

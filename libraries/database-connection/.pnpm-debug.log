@@ -5,15 +5,15 @@
   },
   "1 debug pnpm:package-manifest": {
     "initial": {},
-    "prefix": "/home/fqa/.local/share/pnpm/store/v3/tmp/dlx-3054"
+    "prefix": "/home/fqa/.local/share/pnpm/store/v3/tmp/dlx-1846"
   },
   "2 debug pnpm:context": {
     "currentLockfileExists": false,
     "storeDir": "/home/fqa/.local/share/pnpm/store/v3",
-    "virtualStoreDir": "/home/fqa/.local/share/pnpm/store/v3/tmp/dlx-3054/node_modules/.pnpm"
+    "virtualStoreDir": "/home/fqa/.local/share/pnpm/store/v3/tmp/dlx-1846/node_modules/.pnpm"
   },
   "3 debug pnpm:stage": {
-    "prefix": "/home/fqa/.local/share/pnpm/store/v3/tmp/dlx-3054",
+    "prefix": "/home/fqa/.local/share/pnpm/store/v3/tmp/dlx-1846",
     "stage": "resolution_started"
   },
   "4 debug pnpm:_dependency_resolved": {
@@ -26,10 +26,15 @@
   },
   "5 debug pnpm:progress": {
     "packageId": "registry.npmjs.org/prisma/4.0.0",
-    "requester": "/home/fqa/.local/share/pnpm/store/v3/tmp/dlx-3054",
+    "requester": "/home/fqa/.local/share/pnpm/store/v3/tmp/dlx-1846",
     "status": "resolved"
   },
-  "6 debug pnpm:_dependency_resolved": {
+  "6 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/prisma/4.0.0",
+    "requester": "/home/fqa/.local/share/pnpm/store/v3/tmp/dlx-1846",
+    "status": "found_in_store"
+  },
+  "7 debug pnpm:_dependency_resolved": {
     "resolution": "registry.npmjs.org/@prisma/engines/3.16.0-49.da41d2bb3406da22087b849f0e911199ba4fbf11",
     "wanted": {
       "dependentId": "/prisma/4.0.0",
@@ -37,82 +42,77 @@
       "rawSpec": "3.16.0-49.da41d2bb3406da22087b849f0e911199ba4fbf11"
     }
   },
-  "7 debug pnpm:progress": {
+  "8 debug pnpm:progress": {
     "packageId": "registry.npmjs.org/@prisma/engines/3.16.0-49.da41d2bb3406da22087b849f0e911199ba4fbf11",
-    "requester": "/home/fqa/.local/share/pnpm/store/v3/tmp/dlx-3054",
+    "requester": "/home/fqa/.local/share/pnpm/store/v3/tmp/dlx-1846",
     "status": "resolved"
   },
-  "8 debug pnpm:package-manifest": {
-    "prefix": "/home/fqa/.local/share/pnpm/store/v3/tmp/dlx-3054",
-    "updated": {
-      "dependencies": {
-        "prisma": "^4.0.0"
-      }
-    }
-  },
   "9 debug pnpm:package-manifest": {
-    "prefix": "/home/fqa/.local/share/pnpm/store/v3/tmp/dlx-3054",
+    "prefix": "/home/fqa/.local/share/pnpm/store/v3/tmp/dlx-1846",
     "updated": {
       "dependencies": {
         "prisma": "^4.0.0"
       }
     }
   },
-  "10 debug pnpm:stage": {
-    "prefix": "/home/fqa/.local/share/pnpm/store/v3/tmp/dlx-3054",
+  "10 debug pnpm:package-manifest": {
+    "prefix": "/home/fqa/.local/share/pnpm/store/v3/tmp/dlx-1846",
+    "updated": {
+      "dependencies": {
+        "prisma": "^4.0.0"
+      }
+    }
+  },
+  "11 debug pnpm:stage": {
+    "prefix": "/home/fqa/.local/share/pnpm/store/v3/tmp/dlx-1846",
     "stage": "resolution_done"
   },
-  "11 debug pnpm:stats": {
-    "prefix": "/home/fqa/.local/share/pnpm/store/v3/tmp/dlx-3054",
+  "12 debug pnpm:stats": {
+    "prefix": "/home/fqa/.local/share/pnpm/store/v3/tmp/dlx-1846",
     "removed": 0
   },
-  "12 debug pnpm:progress": {
-    "packageId": "registry.npmjs.org/prisma/4.0.0",
-    "requester": "/home/fqa/.local/share/pnpm/store/v3/tmp/dlx-3054",
-    "status": "found_in_store"
-  },
   "13 debug pnpm:stage": {
-    "prefix": "/home/fqa/.local/share/pnpm/store/v3/tmp/dlx-3054",
+    "prefix": "/home/fqa/.local/share/pnpm/store/v3/tmp/dlx-1846",
     "stage": "importing_started"
   },
   "14 debug pnpm:stats": {
     "added": 2,
-    "prefix": "/home/fqa/.local/share/pnpm/store/v3/tmp/dlx-3054"
+    "prefix": "/home/fqa/.local/share/pnpm/store/v3/tmp/dlx-1846"
   },
   "15 debug pnpm:progress": {
     "packageId": "registry.npmjs.org/@prisma/engines/3.16.0-49.da41d2bb3406da22087b849f0e911199ba4fbf11",
-    "requester": "/home/fqa/.local/share/pnpm/store/v3/tmp/dlx-3054",
+    "requester": "/home/fqa/.local/share/pnpm/store/v3/tmp/dlx-1846",
     "status": "found_in_store"
   },
   "16 debug pnpm:link": {
-    "target": "/home/fqa/.local/share/pnpm/store/v3/tmp/dlx-3054/node_modules/.pnpm/@prisma+engines@3.16.0-49.da41d2bb3406da22087b849f0e911199ba4fbf11/node_modules/@prisma/engines",
-    "link": "/home/fqa/.local/share/pnpm/store/v3/tmp/dlx-3054/node_modules/.pnpm/prisma@4.0.0/node_modules/@prisma/engines"
+    "target": "/home/fqa/.local/share/pnpm/store/v3/tmp/dlx-1846/node_modules/.pnpm/@prisma+engines@3.16.0-49.da41d2bb3406da22087b849f0e911199ba4fbf11/node_modules/@prisma/engines",
+    "link": "/home/fqa/.local/share/pnpm/store/v3/tmp/dlx-1846/node_modules/.pnpm/prisma@4.0.0/node_modules/@prisma/engines"
   },
   "17 debug pnpm:package-import-method": {
     "method": "hardlink"
   },
   "18 debug pnpm:progress": {
     "method": "hardlink",
-    "requester": "/home/fqa/.local/share/pnpm/store/v3/tmp/dlx-3054",
+    "requester": "/home/fqa/.local/share/pnpm/store/v3/tmp/dlx-1846",
     "status": "imported",
-    "to": "/home/fqa/.local/share/pnpm/store/v3/tmp/dlx-3054/node_modules/.pnpm/@prisma+engines@3.16.0-49.da41d2bb3406da22087b849f0e911199ba4fbf11/node_modules/@prisma/engines"
+    "to": "/home/fqa/.local/share/pnpm/store/v3/tmp/dlx-1846/node_modules/.pnpm/@prisma+engines@3.16.0-49.da41d2bb3406da22087b849f0e911199ba4fbf11/node_modules/@prisma/engines"
   },
   "19 debug pnpm:package-import-method": {
     "method": "hardlink"
   },
   "20 debug pnpm:progress": {
     "method": "hardlink",
-    "requester": "/home/fqa/.local/share/pnpm/store/v3/tmp/dlx-3054",
+    "requester": "/home/fqa/.local/share/pnpm/store/v3/tmp/dlx-1846",
     "status": "imported",
-    "to": "/home/fqa/.local/share/pnpm/store/v3/tmp/dlx-3054/node_modules/.pnpm/prisma@4.0.0/node_modules/prisma"
+    "to": "/home/fqa/.local/share/pnpm/store/v3/tmp/dlx-1846/node_modules/.pnpm/prisma@4.0.0/node_modules/prisma"
   },
   "21 debug pnpm:stage": {
-    "prefix": "/home/fqa/.local/share/pnpm/store/v3/tmp/dlx-3054",
+    "prefix": "/home/fqa/.local/share/pnpm/store/v3/tmp/dlx-1846",
     "stage": "importing_done"
   },
   "22 debug pnpm:link": {
-    "target": "/home/fqa/.local/share/pnpm/store/v3/tmp/dlx-3054/node_modules/.pnpm/prisma@4.0.0/node_modules/prisma",
-    "link": "/home/fqa/.local/share/pnpm/store/v3/tmp/dlx-3054/node_modules/prisma"
+    "target": "/home/fqa/.local/share/pnpm/store/v3/tmp/dlx-1846/node_modules/.pnpm/prisma@4.0.0/node_modules/prisma",
+    "link": "/home/fqa/.local/share/pnpm/store/v3/tmp/dlx-1846/node_modules/prisma"
   },
   "23 debug pnpm:root": {
     "added": {
@@ -122,19 +122,19 @@
       "realName": "prisma",
       "version": "4.0.0"
     },
-    "prefix": "/home/fqa/.local/share/pnpm/store/v3/tmp/dlx-3054"
+    "prefix": "/home/fqa/.local/share/pnpm/store/v3/tmp/dlx-1846"
   },
   "24 debug pnpm:link": {
-    "target": "/home/fqa/.local/share/pnpm/store/v3/tmp/dlx-3054/node_modules/.pnpm/@prisma+engines@3.16.0-49.da41d2bb3406da22087b849f0e911199ba4fbf11/node_modules/@prisma/engines",
-    "link": "/home/fqa/.local/share/pnpm/store/v3/tmp/dlx-3054/node_modules/.pnpm/node_modules/@prisma/engines"
+    "target": "/home/fqa/.local/share/pnpm/store/v3/tmp/dlx-1846/node_modules/.pnpm/@prisma+engines@3.16.0-49.da41d2bb3406da22087b849f0e911199ba4fbf11/node_modules/@prisma/engines",
+    "link": "/home/fqa/.local/share/pnpm/store/v3/tmp/dlx-1846/node_modules/.pnpm/node_modules/@prisma/engines"
   },
   "25 debug pnpm:summary": {
-    "prefix": "/home/fqa/.local/share/pnpm/store/v3/tmp/dlx-3054"
+    "prefix": "/home/fqa/.local/share/pnpm/store/v3/tmp/dlx-1846"
   },
   "26 error pnpm": {
-    "shortMessage": "Command failed with exit code 1: /home/fqa/.local/share/pnpm/store/v3/tmp/dlx-3054/node_modules/.bin/prisma migrate dev --schema ./prisma/schema.prisma",
-    "command": "/home/fqa/.local/share/pnpm/store/v3/tmp/dlx-3054/node_modules/.bin/prisma migrate dev --schema ./prisma/schema.prisma",
-    "escapedCommand": "\"/home/fqa/.local/share/pnpm/store/v3/tmp/dlx-3054/node_modules/.bin/prisma\" migrate dev --schema \"./prisma/schema.prisma\"",
+    "shortMessage": "Command failed with exit code 1: /home/fqa/.local/share/pnpm/store/v3/tmp/dlx-1846/node_modules/.bin/prisma migrate dev --schema ./prisma/schema.prisma",
+    "command": "/home/fqa/.local/share/pnpm/store/v3/tmp/dlx-1846/node_modules/.bin/prisma migrate dev --schema ./prisma/schema.prisma",
+    "escapedCommand": "\"/home/fqa/.local/share/pnpm/store/v3/tmp/dlx-1846/node_modules/.bin/prisma\" migrate dev --schema \"./prisma/schema.prisma\"",
     "exitCode": 1,
     "failed": true,
     "timedOut": false,
@@ -142,8 +142,8 @@
     "killed": false,
     "err": {
       "name": "pnpm",
-      "message": "Command failed with exit code 1: /home/fqa/.local/share/pnpm/store/v3/tmp/dlx-3054/node_modules/.bin/prisma migrate dev --schema ./prisma/schema.prisma",
-      "stack": "pnpm: Command failed with exit code 1: /home/fqa/.local/share/pnpm/store/v3/tmp/dlx-3054/node_modules/.bin/prisma migrate dev --schema ./prisma/schema.prisma\n    at makeError (/home/fqa/.local/share/pnpm/global/5/.pnpm/pnpm@7.4.0/node_modules/pnpm/dist/pnpx.cjs:16527:17)\n    at handlePromise (/home/fqa/.local/share/pnpm/global/5/.pnpm/pnpm@7.4.0/node_modules/pnpm/dist/pnpx.cjs:17098:33)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at async Object.handler [as dlx] (/home/fqa/.local/share/pnpm/global/5/.pnpm/pnpm@7.4.0/node_modules/pnpm/dist/pnpx.cjs:183477:7)\n    at async /home/fqa/.local/share/pnpm/global/5/.pnpm/pnpm@7.4.0/node_modules/pnpm/dist/pnpx.cjs:192576:21\n    at async run (/home/fqa/.local/share/pnpm/global/5/.pnpm/pnpm@7.4.0/node_modules/pnpm/dist/pnpx.cjs:192550:34)\n    at async /home/fqa/.local/share/pnpm/global/5/.pnpm/pnpm@7.4.0/node_modules/pnpm/dist/pnpx.cjs:192622:5"
+      "message": "Command failed with exit code 1: /home/fqa/.local/share/pnpm/store/v3/tmp/dlx-1846/node_modules/.bin/prisma migrate dev --schema ./prisma/schema.prisma",
+      "stack": "pnpm: Command failed with exit code 1: /home/fqa/.local/share/pnpm/store/v3/tmp/dlx-1846/node_modules/.bin/prisma migrate dev --schema ./prisma/schema.prisma\n    at makeError (/home/fqa/.local/share/pnpm/global/5/.pnpm/pnpm@7.4.0/node_modules/pnpm/dist/pnpx.cjs:16527:17)\n    at handlePromise (/home/fqa/.local/share/pnpm/global/5/.pnpm/pnpm@7.4.0/node_modules/pnpm/dist/pnpx.cjs:17098:33)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at async Object.handler [as dlx] (/home/fqa/.local/share/pnpm/global/5/.pnpm/pnpm@7.4.0/node_modules/pnpm/dist/pnpx.cjs:183477:7)\n    at async /home/fqa/.local/share/pnpm/global/5/.pnpm/pnpm@7.4.0/node_modules/pnpm/dist/pnpx.cjs:192576:21\n    at async run (/home/fqa/.local/share/pnpm/global/5/.pnpm/pnpm@7.4.0/node_modules/pnpm/dist/pnpx.cjs:192550:34)\n    at async /home/fqa/.local/share/pnpm/global/5/.pnpm/pnpm@7.4.0/node_modules/pnpm/dist/pnpx.cjs:192622:5"
     }
   }
 }

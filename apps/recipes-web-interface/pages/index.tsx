@@ -20,7 +20,7 @@ const Home: NextPage = () => {
     useEffect(() => {
         setLoading(true);
         const get_recipes = () => {
-            const recipes_data = RandomRecipesFactory(100);
+            const recipes_data = RandomRecipesFactory(100); // TODO: call next api
             return recipes_data
                 .map((recipe_data) => {
                     const media = RandomMediaFactory(recipe_data.cod);

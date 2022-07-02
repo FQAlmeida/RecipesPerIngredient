@@ -6,6 +6,7 @@ import {
 import {
   IngredientRegister, RecipeRegister, StepRegister, TechniqueRegister, ToolRegister
 } from "@recipes-per-ingredient/contracts-types";
+const PERSISTENCE_URI = process.env.PERSISTENCE_URI || "localhost:3000";
 
 @Injectable()
 export class AppService {
@@ -16,16 +17,19 @@ export class AppService {
           every: {
             ingredient: {
               name: {
-                in: ingredients
+                in: ["banana"]
               }
             }
           }
         }
       }
     };
-    const response = await fetch("persistence_uri", { // TODO: Setup docker to resolve uri
+    const response = await fetch(PERSISTENCE_URI, {
       body: JSON.stringify(payload),
-      method: "POST"
+      method: "POST",
+      headers: {
+        "content-type": "application/json"
+      }
     });
     const responseJson = await response.json();
     const recipes = parseRecipes(responseJson);
@@ -33,9 +37,12 @@ export class AppService {
   }
   async getTop(qtd: number) {
     const payload: GetRecipesParamsType = { take: qtd };
-    const response = await fetch("persistence_uri", { // TODO: Setup docker to resolve uri
+    const response = await fetch(PERSISTENCE_URI, {
       body: JSON.stringify(payload),
-      method: "POST"
+      method: "POST",
+      headers: {
+        "content-type": "application/json"
+      }
     });
     const responseJson: GetRecipesReturnType = await response.json();
     const recipes = parseRecipes(responseJson);
@@ -63,7 +70,7 @@ function parseRecipes(recipes_data: GetRecipesReturnType): RecipeRegister[] {
     const recipe: RecipeRegister = {
       cod: recipe_data.cod_recipe,
       name: recipe_data.name,
-      serves_adults: 0, // FIX: Why recipes_data dont have serves_adult
+      serves_adults: recipe_data.serves_adults,
       difficult_level: {
         cod: recipe_data.difficulty_level.cod_difficulty_level,
         difficult: recipe_data.difficulty_level.level

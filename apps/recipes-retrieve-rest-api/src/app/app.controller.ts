@@ -8,7 +8,10 @@ export class AppController {
   constructor(private readonly appService: AppService) { }
 
   @Get()
-  async getTop(@Param() qtd?: number | undefined): Promise<RecipeRegister[]> {
+  async getTop(@Param() qtd: number): Promise<RecipeRegister[]> {
+    if(isNaN(qtd)){
+      qtd = 20;
+    }
     return await this.appService.getTop(qtd || 20);
   }
 

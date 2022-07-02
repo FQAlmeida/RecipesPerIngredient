@@ -14,19 +14,45 @@ export async function getRecipes(args: GetRecipesParamsType) {
             difficulty_level: true,
             ingredients_recipe: {
                 include: {
-                    ingredient: true,
-                    measurement_unit: true
+                    ingredient: {
+                        select: {
+                            cod_ingredient: true,
+                            name: true
+                        }
+                    },
+                    measurement_unit: {
+                        select: {
+                            cod_measurement_unit: true,
+                            name: true
+                        }
+                    }
                 }
             },
             steps: {
                 include: {
-                    depends_on: true,
-                    technique: true
+                    depends_on: {
+                        select: {
+                            cod_step: true
+                        }
+                    },
+                    technique: {
+                        select: {
+                            cod_technique: true,
+                            name: true,
+                            description: true,
+                        }
+                    }
                 }
             },
             tools_recipe: {
                 include: {
-                    tool: true
+                    tool: {
+                        select: {
+                            cod_tool: true,
+                            name: true,
+                            details: true
+                        }
+                    }
                 }
             }
         }

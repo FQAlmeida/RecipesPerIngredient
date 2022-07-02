@@ -2,6 +2,7 @@
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "apps/recipes-retrieve-rest-api/src",
   "projectType": "application",
+  "implicitDependencies": ["recipes-persistence-rest-api"],
   "targets": {
     "build": {
       "executor": "@nrwl/node:webpack",
