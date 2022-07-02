@@ -1,4 +1,4 @@
-import { Body, Controller, HttpCode, Post } from "@nestjs/common";
+import { BadRequestException, Body, Controller, HttpCode, Post } from "@nestjs/common";
 import { GetRecipesParamsType, GetRecipesReturnType } from "@recipes-per-ingredient/contracts-types";
 
 import { AppService } from "./app.service";
@@ -11,6 +11,10 @@ export class AppController {
   @HttpCode(200)
   async getRecipes(@Body() payload: GetRecipesParamsType)
     : Promise<GetRecipesReturnType> {
+    if (!payload.filter && !payload.take) {
+      throw new BadRequestException({ "bad request": "payload should not be empty" });
+
+    }
     return await this.appService.getRecipes(payload);
   }
 }

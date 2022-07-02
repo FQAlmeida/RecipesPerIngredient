@@ -45,15 +45,7 @@
       "builder": "@nrwl/workspace:run-commands",
       "outputs": [],
       "options": {
-        "command": "pnpx prisma migrate save --experimental --schema ./prisma/schema.prisma",
-        "cwd": "libraries/database-connection"
-      }
-    },
-    "migrate-up": {
-      "builder": "@nrwl/workspace:run-commands",
-      "outputs": [],
-      "options": {
-        "command": "pnpx prisma migrate up --experimental --schema ./prisma/schema.prisma",
+        "command": "pnpx prisma migrate dev --schema ./prisma/schema.prisma",
         "cwd": "libraries/database-connection"
       }
     },
