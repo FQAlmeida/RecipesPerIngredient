@@ -41,11 +41,19 @@
         "passWithNoTests": true
       }
     },
-    "migrate-save": {
+    "migrate": {
       "builder": "@nrwl/workspace:run-commands",
       "outputs": [],
       "options": {
-        "command": "pnpx prisma migrate dev --schema ./prisma/schema.prisma",
+        "command": "pnpx prisma migrate dev --schema ./prisma/schema.sqlite.prisma",
+        "cwd": "libraries/database-connection"
+      }
+    },
+    "migrate-prod": {
+      "builder": "@nrwl/workspace:run-commands",
+      "outputs": [],
+      "options": {
+        "command": "pnpx prisma migrate deploy --schema ./prisma/schema.postgres.prisma",
         "cwd": "libraries/database-connection"
       }
     },
@@ -53,7 +61,9 @@
       "builder": "@nrwl/workspace:run-commands",
       "outputs": [],
       "options": {
-        "commands": ["pnpx prisma generate --schema ./prisma/schema.prisma"],
+        "commands": [
+          "pnpx prisma generate --schema ./prisma/schema.postgres.prisma"
+        ],
         "cwd": "libraries/database-connection"
       }
     }
