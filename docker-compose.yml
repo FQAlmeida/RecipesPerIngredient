@@ -56,31 +56,31 @@ services:
       - database
       - persistence-layer
   
-  # retrieve-recipes-api:
-  #   container_name: retrieve-recipes-api
-  #   build:
-  #     context: .
-  #     dockerfile: .docker/rest-api.retrieve.dev.dockerfile
-  #   ports:
-  #     - 3002:3002
-  #   depends_on:
-  #     - persistence-recipes-api
-  #   networks:
-  #     - persistence-layer
-  #     - retrieve
+  retrieve-recipes-api:
+    container_name: retrieve-recipes-api
+    build:
+      context: .
+      dockerfile: .docker/rest-api.retrieve.dev.dockerfile
+    ports:
+      - 3002:3002
+    depends_on:
+      - persistence-recipes-api
+    networks:
+      - persistence-layer
+      - retrieve
   
-  # web-interface-recipes:
-  #   container_name: web-interface-recipes
-  #   build:
-  #     context: .
-  #     dockerfile: .docker/interface.web.dev.dockerfile
-  #   ports:
-  #     - 3003:3003
-  #   depends_on:
-  #     - retrieve-recipes-api
-  #   networks:
-  #     - client
-  #     - retrieve
+  web-interface-recipes:
+    container_name: web-interface-recipes
+    build:
+      context: .
+      dockerfile: .docker/interface.web.dev.dockerfile
+    ports:
+      - 3003:3003
+    depends_on:
+      - retrieve-recipes-api
+    networks:
+      - client
+      - retrieve
 
 
 volumes:

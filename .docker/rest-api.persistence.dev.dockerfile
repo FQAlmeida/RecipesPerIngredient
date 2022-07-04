@@ -16,14 +16,15 @@ RUN pnpm install
 ADD libraries/ libraries
 RUN pnpm install
 
-ADD apps/recipes-persistence-rest-api/ apps/recipes-persistence-rest-api
+ADD apps/ apps
 RUN pnpm install
 
 # WORKDIR /app/apps/recipes-persistence-rest-api/
-# RUN chmod +x scripts/exec_migrate.sh
-# ENTRYPOINT ["scripts/exec_migrate.sh"]
+RUN chmod +x /app/apps/recipes-persistence-rest-api/scripts/exec_migrate.sh
+ENTRYPOINT ["/app/apps/recipes-persistence-rest-api/scripts/exec_migrate.sh"]
 
 WORKDIR /app
+RUN ["pnpm", "exec", "nx", "run", "database-connection:gen-client"]
 
 CMD ["pnpm", "exec", "nx", "run", "recipes-persistence-rest-api:serve"]
 # CMD ["ls", "-a", "apps/recipes-persistence-rest-api/"]

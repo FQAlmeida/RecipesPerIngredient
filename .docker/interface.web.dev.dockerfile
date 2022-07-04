@@ -17,7 +17,7 @@ ADD libraries/ libraries
 # ADD components/ components
 RUN pnpm install
 
-ADD apps/recipes-web-interface/ apps/recipes-web-interface
+ADD apps/ apps
 RUN pnpm install
 
 CMD ["pnpm", "exec", "nx", "run", "recipes-web-interface:serve:development"]

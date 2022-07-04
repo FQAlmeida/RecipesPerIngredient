@@ -16,7 +16,15 @@ RUN pnpm install
 ADD libraries/ libraries
 RUN pnpm install
 
-ADD apps/recipes-retrieve-rest-api/ apps/recipes-retrieve-rest-api 
+ADD apps/ apps 
 RUN pnpm install
+
+# WORKDIR /app/apps/recipes-retrieve-rest-api/
+# RUN chmod +x /app/apps/recipes-retrieve-rest-api/scripts/exec_migrate.sh
+# ENTRYPOINT ["/app/apps/recipes-retrieve-rest-api/scripts/exec_migrate.sh"]
+
+
+WORKDIR /app
+RUN ["pnpm", "exec", "nx", "run", "database-connection:gen-client"]
 
 CMD ["pnpm", "exec", "nx", "run", "recipes-retrieve-rest-api:serve"]
