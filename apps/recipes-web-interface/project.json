@@ -26,7 +26,8 @@
       "defaultConfiguration": "development",
       "options": {
         "buildTarget": "recipes-web-interface:build",
-        "dev": true
+        "dev": true,
+        "port": 3003
       },
       "configurations": {
         "development": {
