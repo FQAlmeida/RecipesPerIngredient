@@ -45,7 +45,7 @@
       "builder": "@nrwl/workspace:run-commands",
       "outputs": [],
       "options": {
-        "command": "pnpx prisma migrate dev --schema ./prisma/schema.sqlite.prisma",
+        "command": "pnpx prisma migrate dev --schema ./prisma/schema.postgres.prisma",
         "cwd": "libraries/database-connection"
       }
     },

@@ -13,11 +13,13 @@ export class AppService {
   async getWithIngredients(ingredients: string[]) {
     const payload: GetRecipesParamsType = {
       filter: {
-        ingredients_recipe: {
-          every: {
-            ingredient: {
-              name: {
-                in: ["banana"]
+        NOT: {
+          ingredients_recipe: {
+            some: {
+              ingredient: {
+                name: {
+                  notIn: ingredients
+                }
               }
             }
           }

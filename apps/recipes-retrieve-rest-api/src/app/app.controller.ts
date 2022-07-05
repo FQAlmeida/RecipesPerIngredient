@@ -17,7 +17,7 @@ export class AppController {
 
   @Post()
   @HttpCode(200)
-  async getWithIngredients(@Body() ingredients: string[]) {
-    return await this.appService.getWithIngredients(ingredients);
+  async getWithIngredients(@Body() body: {ingredients: string[]}) {
+    return await this.appService.getWithIngredients(body.ingredients);
   }
 }

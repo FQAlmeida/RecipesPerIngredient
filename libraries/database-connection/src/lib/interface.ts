@@ -1,6 +1,10 @@
 import { PrismaClient, Prisma } from "@prisma/client";
 
-const prisma = new PrismaClient();
+const prisma = new PrismaClient({
+    log:[
+        "query"
+    ]
+});
 
 export type GetRecipesParamsType = { filter?: Prisma.RecipeWhereInput, take?: number; };
 type UnboxPromise<T extends Promise<unknown>> = T extends Promise<infer U> ? U : never;

@@ -17,7 +17,7 @@ class IngredientsItem:
 @dataclass
 class IngredientList:
     category_name: str
-    ingredientes: list[IngredientsItem]
+    ingredients: list[IngredientsItem]
 
 
 @dataclass

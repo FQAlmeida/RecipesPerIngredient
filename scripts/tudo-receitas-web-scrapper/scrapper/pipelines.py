@@ -6,11 +6,12 @@
 
 # useful for handling different item types with a single interface
 import json
+from typing import List
 from itemadapter import ItemAdapter
 
 
 class ScrapperPipeline:
-    recipes = list()
+    recipes: List[dict] = list()
 
     def open_spider(self, spider):
         pass

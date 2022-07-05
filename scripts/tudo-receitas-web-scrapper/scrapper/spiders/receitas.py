@@ -46,12 +46,14 @@ class ReceitasSpider(scrapy.Spider):
         prep_time_match = re.search(
             "[0-9]+", prep_time_str.string if prep_time_str else "")
 
-        prep_time = prep_time_match.group() if prep_time_match else -1
+        prep_time = int(prep_time_match.group()) if prep_time_match else -1
+        if prep_time == -1:
+            return
 
         difficulty = body.find(class_="dificultad", recursive=True)
         if not difficulty:
             return
-        difficulty = " ".join(difficulty.string.split(" ")[1:])
+        difficulty = " ".join(difficulty.string.split(" ")[1:]).lower()
 
         serves = body.find(class_="comensales", recursive=True)
         if not serves:
