@@ -1,5 +1,5 @@
 import { Injectable } from "@nestjs/common";
-import { GetRecipesParamsType, GetRecipesReturnType } from "@recipes-per-ingredient/contracts-types";
+import { GetRecipesParamsType, GetRecipesReturnType, RecipeRegisterContract } from "@recipes-per-ingredient/contracts-types";
 import {
   convertToDuration
 } from "@recipes-per-ingredient/recipes-models";
@@ -52,8 +52,8 @@ export class AppService {
   }
 }
 
-function parseRecipes(recipes_data: GetRecipesReturnType): RecipeRegister[] {
-  const recipes: RecipeRegister[] = [];
+function parseRecipes(recipes_data: GetRecipesReturnType): RecipeRegisterContract[] {
+  const recipes: RecipeRegisterContract[] = [];
 
   type step_type = typeof recipes_data[number]["steps"];
   type technique_type = step_type[number]["technique"];
@@ -69,7 +69,7 @@ function parseRecipes(recipes_data: GetRecipesReturnType): RecipeRegister[] {
   };
 
   for (const recipe_data of recipes_data) {
-    const recipe: RecipeRegister = {
+    const recipe: RecipeRegisterContract = {
       cod: recipe_data.cod_recipe,
       name: recipe_data.name,
       serves_adults: recipe_data.serves_adults,
@@ -97,8 +97,8 @@ function parseRecipes(recipes_data: GetRecipesReturnType): RecipeRegister[] {
           quantity: ingredient_data.quatity
         };
       }),
-      cooking_time: recipe_data.cooking_time ? convertToDuration(recipe_data.cooking_time) : undefined,
-      preparation_time: convertToDuration(recipe_data.preparation_time),
+      cooking_time: recipe_data.cooking_time ? recipe_data.cooking_time : undefined,
+      preparation_time: recipe_data.preparation_time,
       steps: recipe_data.steps.map<StepRegister>((data) => {
         return {
           cod: data.cod_step,

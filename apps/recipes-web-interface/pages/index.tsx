@@ -1,44 +1,51 @@
 import type { NextPage } from "next";
 import { useState } from "react";
-import { RecipeRegister } from "@recipes-per-ingredient/recipes-models";
+import { convertToDuration, RecipeRegister } from "@recipes-per-ingredient/recipes-models";
 import { IngredientsFilterForm } from "@recipes-per-ingredient/recipes-components";
 import { RecipeList } from "@recipes-per-ingredient/recipes-components";
 import { Loading } from "@recipes-per-ingredient/recipes-components";
 
 import useSWR from "swr";
+import { RecipeRegisterContract } from "@recipes-per-ingredient/contracts-types";
 
 type recipesState = (RecipeRegister & {
     recipe_image_url: string;
 })[];
 
-const fetcher = async (params: { baseUrl: string, ingredients: string[]; }) => {
+const fetcher = async (params: { baseUrl: string, ingredients: string[]; }): Promise<recipesState> => {
     const { ingredients, baseUrl } = params;
-    console.log(ingredients);
 
     let url: string, method: string;
     if (!ingredients || ingredients.length === 0) {
-        console.log("Loading top 20");
-
         url = `${baseUrl}/top/20`;
         method = "GET";
     } else {
         url = `${baseUrl}/recipes`;
         method = "POST";
     }
-    const response = await fetch(url, {
+    const fetchResponse = await fetch(url, {
         method: method,
         headers: {
             "content-type": "application/json"
         },
-        body: JSON.stringify({ ingredients })
+        body: method === "POST" ? JSON.stringify({ ingredients }) : undefined
     });
-    const jsonResponse: recipesState = await response.json();
-    console.table(response);
-    console.table(jsonResponse);
+    const jsonResponse: (RecipeRegisterContract & {
+        recipe_image_url: string;
+    })[] = await fetchResponse.json();
     if (!jsonResponse) {
         return await fetcher({ baseUrl: "/api", ingredients: [] });
     }
-    return jsonResponse;
+    const response = jsonResponse.map<RecipeRegister & {
+        recipe_image_url: string;
+    }>((recipe) => {
+        return {
+            ...recipe,
+            preparation_time: convertToDuration(recipe.preparation_time),
+            cooking_time: recipe.cooking_time ? convertToDuration(recipe.cooking_time) : undefined
+        };
+    });
+    return response;
 };
 
 const Home: NextPage = () => {

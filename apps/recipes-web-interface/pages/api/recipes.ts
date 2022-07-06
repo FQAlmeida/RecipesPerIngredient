@@ -1,4 +1,4 @@
-import { RecipeRegister } from "@recipes-per-ingredient/contracts-types";
+import { RecipeRegister, RecipeRegisterContract } from "@recipes-per-ingredient/contracts-types";
 
 export default async function getRecipesWithIngredients(req: { method: string, body: { ingredients: string[]; }; }, res) {
     if (req.method !== "POST") {
@@ -15,10 +15,10 @@ export default async function getRecipesWithIngredients(req: { method: string, b
                     "content-type": "application/json"
                 }
             });
-        const recipes: RecipeRegister[] = await response.json();
+        const recipes: RecipeRegisterContract[] = await response.json();
         console.log(recipes);
 
-        function parseRecipes(recipes: RecipeRegister[]): (RecipeRegister & {
+        function parseRecipes(recipes: RecipeRegisterContract[]): (RecipeRegister & {
             recipe_image_url: string;
         })[] {
             return recipes.map((recipe) => {

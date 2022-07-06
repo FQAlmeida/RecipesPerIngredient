@@ -23,8 +23,8 @@ export interface Recipe {
     difficult_level: DifficultLevel;
     serves_adults: number;
     steps: Step[];
-    preparation_time: Duration;
-    cooking_time?: Duration;
+    preparation_time: Duration | string;
+    cooking_time?: Duration | string;
     ingredients: Ingredient[];
     tools: Tool[];
 }

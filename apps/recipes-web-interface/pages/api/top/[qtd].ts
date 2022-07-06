@@ -1,3 +1,4 @@
+import { RecipeRegisterContract } from "@recipes-per-ingredient/contracts-types";
 import { RecipeRegister } from "@recipes-per-ingredient/recipes-models";
 import { URL, URLSearchParams } from "url";
 
@@ -21,8 +22,8 @@ export default async function getRecipesWithIngredients(req: { method: string, q
                 "content-type": "application/json"
             }
         });
-        const recipes: RecipeRegister[] = await response.json();
-        function parseRecipes(recipes: RecipeRegister[]): (RecipeRegister & {
+        const recipes: RecipeRegisterContract[] = await response.json();
+        function parseRecipes(recipes: RecipeRegisterContract[]): (RecipeRegister & {
             recipe_image_url: string;
         })[] {
             return recipes.map((recipe) => {
