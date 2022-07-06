@@ -5,24 +5,35 @@
   "targets": {
     "build": {
       "executor": "@nrwl/js:tsc",
-      "outputs": ["{options.outputPath}"],
+      "outputs": [
+        "{options.outputPath}"
+      ],
       "options": {
         "outputPath": "dist/libraries/recipes-models",
         "main": "libraries/recipes-models/src/index.ts",
         "tsConfig": "libraries/recipes-models/tsconfig.lib.json",
-        "assets": ["libraries/recipes-models/*.md"]
+        "assets": [
+          "libraries/recipes-models/*.md"
+        ],
+        "generatePackageJson": true
       }
     },
     "lint": {
       "executor": "@nrwl/linter:eslint",
-      "outputs": ["{options.outputFile}"],
+      "outputs": [
+        "{options.outputFile}"
+      ],
       "options": {
-        "lintFilePatterns": ["libraries/recipes-models/**/*.ts"]
+        "lintFilePatterns": [
+          "libraries/recipes-models/**/*.ts"
+        ]
       }
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/libraries/recipes-models"],
+      "outputs": [
+        "coverage/libraries/recipes-models"
+      ],
       "options": {
         "jestConfig": "libraries/recipes-models/jest.config.ts",
         "passWithNoTests": true

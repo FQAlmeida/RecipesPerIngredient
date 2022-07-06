@@ -1,5 +1,5 @@
 import { Body, Controller, Get, HttpCode, Param, Post } from "@nestjs/common";
-import { RecipeRegister } from "@recipes-per-ingredient/contracts-types";
+import {  RecipeRegisterContract } from "@recipes-per-ingredient/contracts-types";
 
 import { AppService } from "./app.service";
 
@@ -8,7 +8,7 @@ export class AppController {
   constructor(private readonly appService: AppService) { }
 
   @Get()
-  async getTop(@Param() qtd: number): Promise<RecipeRegister[]> {
+  async getTop(@Param() qtd: number): Promise<RecipeRegisterContract[]> {
     if(isNaN(qtd)){
       qtd = 20;
     }

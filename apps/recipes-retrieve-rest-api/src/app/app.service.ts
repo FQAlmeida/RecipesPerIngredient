@@ -1,10 +1,7 @@
 import { Injectable } from "@nestjs/common";
 import { GetRecipesParamsType, GetRecipesReturnType, RecipeRegisterContract } from "@recipes-per-ingredient/contracts-types";
 import {
-  convertToDuration
-} from "@recipes-per-ingredient/recipes-models";
-import {
-  IngredientRegister, RecipeRegister, StepRegister, TechniqueRegister, ToolRegister
+  IngredientRegister, StepRegister, TechniqueRegister, ToolRegister
 } from "@recipes-per-ingredient/contracts-types";
 const PERSISTENCE_URI = process.env.PERSISTENCE_URI || "localhost:3000";
 
@@ -18,7 +15,8 @@ export class AppService {
             some: {
               ingredient: {
                 name: {
-                  notIn: ingredients
+                  notIn: ingredients,
+                  mode: "insensitive"
                 }
               }
             }

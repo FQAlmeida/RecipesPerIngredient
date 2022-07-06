@@ -23,7 +23,7 @@ export default async function getRecipesWithIngredients(req: { method: string, q
             }
         });
         const recipes: RecipeRegisterContract[] = await response.json();
-        function parseRecipes(recipes: RecipeRegisterContract[]): (RecipeRegister & {
+        function parseRecipes(recipes: RecipeRegisterContract[]): (RecipeRegisterContract & {
             recipe_image_url: string;
         })[] {
             return recipes.map((recipe) => {

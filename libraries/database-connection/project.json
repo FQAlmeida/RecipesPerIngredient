@@ -17,7 +17,8 @@
         "tsConfig": "libraries/database-connection/tsconfig.lib.json",
         "assets": [
           "libraries/database-connection/*.md"
-        ]
+        ],
+        "generatePackageJson": true
       }
     },
     "lint": {
@@ -45,7 +46,7 @@
       "builder": "@nrwl/workspace:run-commands",
       "outputs": [],
       "options": {
-        "command": "pnpx prisma migrate dev --schema ./prisma/schema.postgres.prisma",
+        "command": "pnpm prisma migrate dev --schema ./prisma/schema.postgres.prisma",
         "cwd": "libraries/database-connection"
       }
     },
@@ -53,7 +54,7 @@
       "builder": "@nrwl/workspace:run-commands",
       "outputs": [],
       "options": {
-        "command": "pnpx prisma migrate deploy --schema ./prisma/schema.postgres.prisma",
+        "command": "pnpm prisma migrate deploy --schema ./prisma/schema.postgres.prisma",
         "cwd": "libraries/database-connection"
       }
     },

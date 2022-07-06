@@ -14,7 +14,8 @@
       "defaultConfiguration": "production",
       "options": {
         "root": "apps/recipes-web-interface",
-        "outputPath": "dist/apps/recipes-web-interface"
+        "outputPath": "dist/apps/recipes-web-interface",
+        "generatePackageJson": true
       },
       "configurations": {
         "development": {},
