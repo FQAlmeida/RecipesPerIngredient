@@ -5,5 +5,6 @@ export function convertToDuration(iso_pattern: string) {
     if (pattern_match) {
         iso_pattern = `PT${pattern_match[0].toUpperCase()}`;
     }
+    
     return Duration.fromISO(iso_pattern);
 }

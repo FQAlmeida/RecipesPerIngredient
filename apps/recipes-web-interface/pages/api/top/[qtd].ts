@@ -1,22 +1,17 @@
 import { RecipeRegisterContract } from "@recipes-per-ingredient/contracts-types";
-import { RecipeRegister } from "@recipes-per-ingredient/recipes-models";
 import { URL, URLSearchParams } from "url";
 
-export default async function getRecipesWithIngredients(req: { method: string, query: { qtd?: number; }; }, res) {
+export default async function getTopRecipes(req: { method: string, query: { qtd?: number; }; }, res) {
     if (req.method !== "GET") {
         res.status(401);
         return;
     }
     async function getTopRecipes(qtd?: number) {
         const host = process.env.RETRIEVE_URI || "localhost:3000";
-        const uri = new URL(host);
         if (qtd === undefined) {
             qtd = 20;
         }
-        const params = new URLSearchParams({
-            qtd: String(qtd)
-        });
-        uri.search = params.toString();
+        const uri = new URL(host + `/${qtd}`);
         const response = await fetch(uri, {
             headers: {
                 "content-type": "application/json"

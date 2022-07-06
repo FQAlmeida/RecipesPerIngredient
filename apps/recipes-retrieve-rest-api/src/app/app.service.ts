@@ -1,4 +1,4 @@
-import { Injectable } from "@nestjs/common";
+import { BadRequestException, Injectable } from "@nestjs/common";
 import { GetRecipesParamsType, GetRecipesReturnType, RecipeRegisterContract } from "@recipes-per-ingredient/contracts-types";
 import {
   IngredientRegister, StepRegister, TechniqueRegister, ToolRegister
@@ -7,6 +7,28 @@ const PERSISTENCE_URI = process.env.PERSISTENCE_URI || "localhost:3000";
 
 @Injectable()
 export class AppService {
+  async getById(id: number): Promise<RecipeRegisterContract> {
+    const payload: GetRecipesParamsType = {
+      filter: {
+        cod_recipe: {
+          equals: id
+        }
+      }
+    };
+    const response = await fetch(PERSISTENCE_URI, {
+      body: JSON.stringify(payload),
+      method: "POST",
+      headers: {
+        "content-type": "application/json"
+      }
+    });
+    const responseJson = await response.json();
+    const recipes = parseRecipes(responseJson);
+    if (recipes.length > 0) {
+      return recipes[0];
+    }
+    throw new BadRequestException();
+  }
   async getWithIngredients(ingredients: string[]) {
     const payload: GetRecipesParamsType = {
       filter: {
