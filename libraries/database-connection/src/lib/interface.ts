@@ -15,6 +15,7 @@ export async function getRecipes(args: GetRecipesParamsType) {
         where: args.filter,
         take: args.take,
         include: {
+            medias: true,
             difficulty_level: true,
             ingredients_recipe: {
                 include: {

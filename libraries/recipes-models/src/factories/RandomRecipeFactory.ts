@@ -5,6 +5,7 @@ import { DifficultLevelEnum, DifficultLevelRegister, RecipeRegister } from "../m
 import { StepRegister } from "../models/Step";
 import { TechniqueRegister } from "../models/Technique";
 import { ToolRegister } from "../models/Tool";
+import { RandomMediasFactory } from "./RandomMediaFactory";
 
 function randomEnum<T extends object>(anEnum: T): T[keyof T] {
     const enumValues = Object.values(anEnum)
@@ -112,6 +113,7 @@ export function RandomRecipeFactory(id?: number): RecipeRegister {
     return {
         cod: id || faker.mersenne.rand(),
         name: faker.name.middleName(),
+        medias: RandomMediasFactory(2),
         difficult_level: RandomDifficultyLevel(),
         serves_adults: faker.mersenne.rand(4, 1),
         steps: RandomStepsFactory(faker.mersenne.rand(3, 10)),

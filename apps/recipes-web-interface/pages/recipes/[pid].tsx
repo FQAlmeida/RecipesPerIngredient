@@ -6,9 +6,7 @@ import useSWR from "swr";
 import { RecipeRegisterContract } from "@recipes-per-ingredient/contracts-types";
 import { useRouter } from "next/router";
 
-type recipesState = (RecipeRegister & {
-    recipe_image_url: string;
-});
+type recipesState = RecipeRegister;
 
 const fetcher = async (url: string): Promise<recipesState> => {
     const fetchResponse = await fetch(url, {
@@ -17,9 +15,7 @@ const fetcher = async (url: string): Promise<recipesState> => {
             "content-type": "application/json"
         },
     });
-    const jsonResponse: (RecipeRegisterContract & {
-        recipe_image_url: string;
-    }) = await fetchResponse.json();
+    const jsonResponse: RecipeRegisterContract = await fetchResponse.json();
     console.log(jsonResponse);
 
     return {

@@ -21,7 +21,6 @@ export class AppController {
   async getById(@Param() params: { id: string; }): Promise<RecipeRegisterContract> {
     const { id } = params;
     const parsedId = parseInt(id);
-    console.log("id: " + id);
 
     if (isNaN(parsedId)) {
       throw new BadRequestException();

@@ -18,13 +18,10 @@ export default async function getRecipesWithIngredients(req: { method: string, b
         const recipes: RecipeRegisterContract[] = await response.json();
         console.log(ingredients, recipes);
 
-        function parseRecipes(recipes: RecipeRegisterContract[]): (RecipeRegisterContract & {
-            recipe_image_url: string;
-        })[] {
+        function parseRecipes(recipes: RecipeRegisterContract[]): RecipeRegisterContract[] {
             return recipes.map((recipe) => {
                 return {
-                    ...recipe,
-                    recipe_image_url: "https://images.immediate.co.uk/production/volatile/sites/30/2020/08/salmonpasta-11bb3f0.jpg?resize=960,872?quality=90&webp=true&resize=1024,740"
+                    ...recipe
                 };
             });
         }

@@ -1,5 +1,5 @@
 import { RecipeRegisterContract } from "@recipes-per-ingredient/contracts-types";
-import { URL, URLSearchParams } from "url";
+import { URL } from "url";
 
 export default async function getTopRecipes(req: { method: string, query: { qtd?: number; }; }, res) {
     if (req.method !== "GET") {
@@ -18,13 +18,10 @@ export default async function getTopRecipes(req: { method: string, query: { qtd?
             }
         });
         const recipes: RecipeRegisterContract[] = await response.json();
-        function parseRecipes(recipes: RecipeRegisterContract[]): (RecipeRegisterContract & {
-            recipe_image_url: string;
-        })[] {
+        function parseRecipes(recipes: RecipeRegisterContract[]): RecipeRegisterContract[] {
             return recipes.map((recipe) => {
                 return {
-                    ...recipe,
-                    recipe_image_url: "https://images.immediate.co.uk/production/volatile/sites/30/2020/08/salmonpasta-11bb3f0.jpg?resize=960,872?quality=90&webp=true&resize=1024,740"
+                    ...recipe
                 };
             });
         }

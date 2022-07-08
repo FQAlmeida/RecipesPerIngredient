@@ -7,6 +7,13 @@ generator client {
     provider = "prisma-client-js"
 }
 
+model Media {
+    cod_media  Int    @id @default(autoincrement())
+    media_uri  String
+    recipe     Recipe @relation(fields: [cod_recipe], references: [cod_recipe])
+    cod_recipe Int
+}
+
 model Recipe {
     cod_recipe           Int                 @id @default(autoincrement())
     name                 String
@@ -18,6 +25,7 @@ model Recipe {
     ingredients_recipe   IngredientsRecipe[]
     tools_recipe         ToolsRecipe[]
     serves_adults        Int
+    medias               Media[]
 }
 
 model Step {

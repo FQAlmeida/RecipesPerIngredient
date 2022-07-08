@@ -1,5 +1,6 @@
 import { Duration } from "luxon";
 import { Ingredient, IngredientRegister } from "./Ingredient";
+import { MediaRegister } from "./Media";
 import { Register } from "./Register";
 import { Step, StepRegister } from "./Step";
 import { Tool, ToolRegister } from "./Tool";
@@ -29,6 +30,7 @@ export interface Recipe {
 }
 
 export interface RecipeRegister extends Recipe, Register {
+    medias: MediaRegister[]
     difficult_level: DifficultLevelRegister;
     steps: StepRegister[];
     ingredients: IngredientRegister[];

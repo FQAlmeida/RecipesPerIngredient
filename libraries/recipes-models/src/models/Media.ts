@@ -10,8 +10,6 @@ export interface MediaType {
 export interface MediaTypeRegister extends MediaType, Register { }
 
 export interface Media {
-    cod_recipe: number;
     source: string;
-    type: MediaType;
 }
 export interface MediaRegister extends Media, Register { }

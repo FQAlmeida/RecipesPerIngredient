@@ -1,5 +1,5 @@
 import { BadRequestException, Injectable } from "@nestjs/common";
-import { GetRecipesParamsType, GetRecipesReturnType, RecipeRegisterContract } from "@recipes-per-ingredient/contracts-types";
+import { GetRecipesParamsType, GetRecipesReturnType, MediaRegister, RecipeRegisterContract } from "@recipes-per-ingredient/contracts-types";
 import {
   IngredientRegister, StepRegister, TechniqueRegister, ToolRegister
 } from "@recipes-per-ingredient/contracts-types";
@@ -93,6 +93,12 @@ function parseRecipes(recipes_data: GetRecipesReturnType): RecipeRegisterContrac
       cod: recipe_data.cod_recipe,
       name: recipe_data.name,
       serves_adults: recipe_data.serves_adults,
+      medias: recipe_data.medias.map<MediaRegister>((media_register) => {
+        return {
+          cod: media_register.cod_media,
+          source: media_register.media_uri
+        };
+      }),
       difficult_level: {
         cod: recipe_data.difficulty_level.cod_difficulty_level,
         difficult: recipe_data.difficulty_level.level

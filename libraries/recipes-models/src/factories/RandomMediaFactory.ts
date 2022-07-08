@@ -8,11 +8,17 @@ export function RandomMediaTypeFactory(): MediaTypeRegister {
     };
 }
 
-export function RandomMediaFactory(cod_recipe: number): MediaRegister {
+export function RandomMediaFactory(): MediaRegister {
     return {
         cod: faker.mersenne.rand(),
-        cod_recipe,
         source: faker.image.food(640, 480, true),
-        type: RandomMediaTypeFactory(),
     };
+}
+
+export function RandomMediasFactory(qtd_medias: number): MediaRegister[] {
+    const medias = Array<MediaRegister>(qtd_medias);
+    for (let index = 0; index < medias.length; index++) {
+        medias[index] = RandomMediaFactory();
+    }
+    return medias;
 }
