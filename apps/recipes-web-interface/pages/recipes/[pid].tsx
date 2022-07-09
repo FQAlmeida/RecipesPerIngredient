@@ -16,7 +16,6 @@ const fetcher = async (url: string): Promise<recipesState> => {
         },
     });
     const jsonResponse: RecipeRegisterContract = await fetchResponse.json();
-    console.log(jsonResponse);
 
     return {
         ...jsonResponse,
@@ -30,7 +29,6 @@ const Recipe: NextPage = () => {
 
     const { pid } = router.query;
     const { data, error } = useSWR(`/api/recipes/${pid}`, fetcher);
-    console.log(data);
 
     if (error) {
         return <p>Error {String(error)}</p>;
@@ -41,9 +39,7 @@ const Recipe: NextPage = () => {
     }
 
     return (
-        <>
-            <RecipeDetail recipe={data} />
-        </>
+        <RecipeDetail recipe={data} />
     );
 };
 

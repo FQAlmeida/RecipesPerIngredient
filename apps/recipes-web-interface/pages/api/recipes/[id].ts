@@ -16,7 +16,6 @@ export default async function getRecipesWithIngredients(req: { method: string, q
             }
         });
         const recipe: RecipeRegisterContract = await response.json();
-        console.log(recipe);
 
         function parseRecipe(recipe: RecipeRegisterContract): RecipeRegisterContract {
             return {

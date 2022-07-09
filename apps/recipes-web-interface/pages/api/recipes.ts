@@ -16,8 +16,6 @@ export default async function getRecipesWithIngredients(req: { method: string, b
                 }
             });
         const recipes: RecipeRegisterContract[] = await response.json();
-        console.log(ingredients, recipes);
-
         function parseRecipes(recipes: RecipeRegisterContract[]): RecipeRegisterContract[] {
             return recipes.map((recipe) => {
                 return {

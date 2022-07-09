@@ -1,11 +1,10 @@
-import { Recipe } from "@recipes-per-ingredient/recipes-models";
+import { RecipeRegister } from "@recipes-per-ingredient/contracts-types";
 import { Duration } from "luxon";
 
 export interface RecipeData extends Pick<
-    Recipe,
-    "name" | "difficult_level" | "serves_adults" | "cooking_time" | "preparation_time"
+    RecipeRegister,
+    "cod" | "name" | "difficult_level" | "serves_adults" | "cooking_time" | "preparation_time" | "medias"
 > {
     cooking_time?: Duration,
     preparation_time: Duration;
-    recipe_image_url: string;
 }

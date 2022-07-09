@@ -10,7 +10,7 @@ import {
 
 type inputValuesType = { [key: number]: string; };
 interface IngredientsFilterFormProps {
-    onIngredientsChange: (ingredients: string[]) => void
+    onIngredientsChange: (ingredients: string[]) => void;
 }
 
 export function IngredientsFilterForm(props: IngredientsFilterFormProps) {
@@ -19,8 +19,17 @@ export function IngredientsFilterForm(props: IngredientsFilterFormProps) {
     );
 
     useEffect(() => {
+        const getIngredients = (): string[] => {
+            const ingredients = [];
+            for (const value of Object.values(inputValues)) {
+                if (value && value.length > 0) {
+                    ingredients.push(value);
+                }
+            }
+            return ingredients;
+        };
         props.onIngredientsChange(getIngredients());
-    }, [inputValues]);
+    }, [inputValues, props]);
 
     const renderInputs = (values: inputValuesType) => {
         const renderedInputs = [];
@@ -67,15 +76,7 @@ export function IngredientsFilterForm(props: IngredientsFilterFormProps) {
         });
     };
 
-    const getIngredients = (): string[] => {
-        const ingredients = []; 
-        for (const value of Object.values(inputValues)) {
-            if (value && value.length > 0) {
-                ingredients.push(value);
-            }
-        }
-        return ingredients;
-    };
+
     return (
         <Container>
             <Stack spacing={2}>

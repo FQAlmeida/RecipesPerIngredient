@@ -7,10 +7,9 @@ import { Loading } from "@recipes-per-ingredient/recipes-components";
 
 import useSWR from "swr";
 import { RecipeRegisterContract } from "@recipes-per-ingredient/contracts-types";
+import { Container } from "@mui/material";
 
-type recipesState = (RecipeRegister & {
-    recipe_image_url: string;
-})[];
+type recipesState = RecipeRegister[];
 
 const fetcher = async (params: { baseUrl: string, ingredients: string[]; }): Promise<recipesState> => {
     const { ingredients, baseUrl } = params;
@@ -30,15 +29,11 @@ const fetcher = async (params: { baseUrl: string, ingredients: string[]; }): Pro
         },
         body: method === "POST" ? JSON.stringify({ ingredients }) : undefined
     });
-    const jsonResponse: (RecipeRegisterContract & {
-        recipe_image_url: string;
-    })[] = await fetchResponse.json();
+    const jsonResponse: RecipeRegisterContract[] = await fetchResponse.json();
     if (!jsonResponse) {
         return await fetcher({ baseUrl: "/api", ingredients: [] });
     }
-    const response = jsonResponse.map<RecipeRegister & {
-        recipe_image_url: string;
-    }>((recipe) => {
+    const response = jsonResponse.map<RecipeRegister>((recipe) => {
         return {
             ...recipe,
             preparation_time: convertToDuration(recipe.preparation_time),
@@ -61,10 +56,10 @@ const Home: NextPage = () => {
     }
 
     return (
-        <>
+        <Container>
             <IngredientsFilterForm onIngredientsChange={(ingredients) => setIngredients(ingredients)} />
             <RecipeList recipes={data} />
-        </>
+        </Container>
     );
 };
 
