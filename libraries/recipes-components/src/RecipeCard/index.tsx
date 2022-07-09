@@ -4,30 +4,16 @@ import {
     FaceTwoTone as FaceIcon,
     AccessTimeTwoTone as AccessTimeIcon,
     CookieTwoTone as CookieIcon,
-    SignalCellular0BarTwoTone as SignalCellular0BarIcon,
-    SignalCellular2BarTwoTone as SignalCellular2BarIcon,
-    SignalCellular3BarTwoTone as SignalCellular3BarIcon,
 } from "@mui/icons-material";
-import { DifficultLevelEnum } from "@recipes-per-ingredient/recipes-models";
 import { RecipeData } from "../types/RecipeData";
 import Link from "next/link";
+import { DifficultyIconChooser } from "../util/DifficultyIconChooser";
 
 export function RecipeCard(props: { recipe: RecipeData; }) {
     const { name, medias, cod } = props.recipe;
     const { difficult_level, serves_adults, cooking_time, preparation_time } = props.recipe;
-    const DifficultyIconChooser = () => {
-        switch (difficult_level.difficult) {
-            case DifficultLevelEnum.EASY:
-                return SignalCellular0BarIcon;
-            case DifficultLevelEnum.MEDIUM:
-                return SignalCellular2BarIcon;
-            case DifficultLevelEnum.HARD:
-                return SignalCellular3BarIcon;
-            default:
-                return SignalCellular2BarIcon;
-        }
-    };
-    const DifficultyIcon = DifficultyIconChooser();
+
+    const DifficultyIcon = DifficultyIconChooser(difficult_level);
     return (
         <Card sx={{ maxWidth: 345 }}>
             <Link href={`/recipes/${cod}`}>

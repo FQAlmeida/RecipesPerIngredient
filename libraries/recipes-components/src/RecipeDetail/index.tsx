@@ -1,31 +1,55 @@
-import { Container, Divider, Grid, Typography } from "@mui/material";
+import { Container, Divider, Grid, Paper, Step } from "@mui/material";
 import { Recipe, Media } from "@recipes-per-ingredient/recipes-models";
+import { RecipeMainDetail } from "./RecipeMainDetails";
+import { EggTwoTone as EggIcon } from "@mui/icons-material";
+import { IngredientsList } from "./IngredientsList";
+import { ToolList } from "./ToolsList";
+import { StepsList } from "./StepsList";
 
 export function RecipeDetail(props: { recipe: Recipe & { medias: Media[]; }; }) {
     const { recipe } = props;
     return (
-        <Grid container style={{ minHeight: "100vh" }}>
-            <Grid item xs={4} style={{ overflow: "hidden", justifyContent: "center", alignItems: "center" }}>
-                <img
-                    src={`${recipe.medias[0].source}`}
-                    srcSet={`${recipe.medias[0].source}`}
-                    alt={`${recipe.name}`}
-                    loading="lazy"
-                    style={{
-                        flexShrink: 0,
-                        minWidth: "100%",
-                        minHeight: "100%"
-                    }}
-                />
-            </Grid>
-            <Divider orientation="vertical" flexItem />
-            <Grid item >
-                <Container>
-                    <Typography variant="h3" component="h3">
-                        {recipe.name}
-                    </Typography>
-                </Container>
-            </Grid>
-        </Grid>
+        <Container>
+            <Paper
+                elevation={0}
+                variant="outlined"
+                style={{ minHeight: "98vh", marginBlock: "1vh", padding: "1%" }}>
+                <Grid container style={{ height: "100%" }}>
+                    <Grid item xs={4} style={{
+                        height: "100%",
+                        overflow: "hidden",
+                    }}>
+                        <img
+                            src={`${recipe.medias[0].source}`}
+                            srcSet={`${recipe.medias[0].source}`}
+                            alt={`${recipe.name}`}
+                            loading="lazy"
+                            style={{
+                                flexShrink: 0,
+                                maxWidth: "100%",
+                                maxHeight: "100%",
+                                borderRadius: "4px"
+                            }}
+                        />
+                    </Grid>
+                    <Grid item xs={8} >
+                        <RecipeMainDetail recipe={recipe} />
+                    </Grid>
+                </Grid>
+                <Divider><EggIcon /></Divider>
+                <Grid container style={{ height: "100%" }}>
+                    <Grid item xs={6} style={{
+                        height: "100%",
+                        overflow: "hidden",
+                    }}>
+                        <IngredientsList ingredients={recipe.ingredients} />
+                        <ToolList tools={recipe.tools} />
+                    </Grid>
+                    <Grid item xs={6} >
+                        <StepsList steps={recipe.steps.map((step, index) => {return{...step, index}})}/>
+                    </Grid>
+                </Grid>
+            </Paper>
+        </Container >
     );
 }
