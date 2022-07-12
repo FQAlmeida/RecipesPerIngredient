@@ -31,44 +31,12 @@ services:
     ports:
       - "5432:5432"
 
-  # DB Visualizer
-  adminer:
-    image: adminer:latest
-    restart: always
-    ports:
-      - 8080:8080
-    depends_on:
-      - recipes-database
-    networks:
-      - database
-    labels:
-      kompose.service.type: LoadBalancer
-      kompose.service.expose: "localhost"
-  pg-admin:
-    image: dpage/pgadmin4:latest
-    restart: always
-    ports:
-      - 8081:8081
-    environment:
-      - PGADMIN_LISTEN_PORT=8081
-      - PGADMIN_DEFAULT_EMAIL=otavioalmeida650@gmail.com
-      - PGADMIN_DEFAULT_PASSWORD=mypassword
-    volumes:
-      - pg-admin-volume:/var/lib/pgadmin
-    depends_on:
-      - recipes-database
-    networks:
-      - database
-    labels:
-      kompose.service.type: LoadBalancer
-      kompose.service.expose: "localhost"
-
   # Server
   persistence-recipes-api:
     container_name: persistence-recipes-api
     build:
       context: .
-      dockerfile: .docker/images/rest-api.persistence.dev.dockerfile
+      dockerfile: .docker/images/rest-api.persistence.prod.dockerfile
     ports:
       - 3001:3001
     environment:
@@ -84,7 +52,7 @@ services:
     container_name: retrieve-recipes-api
     build:
       context: .
-      dockerfile: .docker/images/rest-api.retrieve.dev.dockerfile
+      dockerfile: .docker/images/rest-api.retrieve.prod.dockerfile
     ports:
       - 3002:3002
     environment:
@@ -100,7 +68,7 @@ services:
     container_name: web-interface-recipes
     build:
       context: .
-      dockerfile: .docker/images/interface.web.dev.dockerfile
+      dockerfile: .docker/images/interface.web.prod.dockerfile
     ports:
       - 3003:3003
     environment:
@@ -118,6 +86,7 @@ services:
 volumes:
   db-storage:
   pg-admin-volume:
+
 
 networks:
   client:

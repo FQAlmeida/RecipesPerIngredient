@@ -1,6 +1,3 @@
-import {
-    CheckCircleTwoTone as CheckCircleTwoToneIcon,
-} from "@mui/icons-material";
 import { Box, Container, List, ListItem, ListItemIcon, ListItemText, Paper, Typography } from "@mui/material";
 
 import { Step } from "@recipes-per-ingredient/recipes-models";

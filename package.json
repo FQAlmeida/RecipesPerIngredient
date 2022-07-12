@@ -63,6 +63,8 @@
     "@nestjs/core": "^8.0.0",
     "@nestjs/platform-express": "^8.0.0",
     "@nrwl/next": "14.3.6",
+    "@nx-tools/docker-metadata": "^3.0.0",
+    "@nx-tools/nx-docker": "^3.0.0",
     "@prisma/client": "^4.0.0",
     "core-js": "^3.6.5",
     "luxon": "^2.4.0",

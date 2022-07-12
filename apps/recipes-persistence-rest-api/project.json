@@ -31,6 +31,28 @@
         }
       }
     },
+    "docker": {
+      "executor": "@nx-tools/nx-docker:build",
+      "options": {
+        "push": true,
+        "load": true,
+        "metadata": {
+          "images": [
+            "recipes-persistence-api"
+          ],
+          "tags": [
+            "type=schedule",
+            "type=ref,event=branch",
+            "type=ref,event=tag",
+            "type=ref,event=pr",
+            "type=semver,pattern={{version}}",
+            "type=semver,pattern={{major}}.{{minor}}",
+            "type=semver,pattern={{major}}",
+            "type=sha"
+          ]
+        }
+      }
+    },
     "serve": {
       "executor": "@nrwl/node:node",
       "options": {
@@ -45,7 +67,8 @@
       "options": {
         "lintFilePatterns": [
           "apps/recipes-persistence-rest-api/**/*.ts"
-        ]
+        ],
+        "fix": true
       }
     },
     "test": {

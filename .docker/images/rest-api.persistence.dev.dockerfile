@@ -23,8 +23,9 @@ RUN pnpm install
 RUN chmod +x /app/apps/recipes-persistence-rest-api/scripts/exec_migrate.sh
 ENTRYPOINT ["/app/apps/recipes-persistence-rest-api/scripts/exec_migrate.sh"]
 
-WORKDIR /app
 RUN ["pnpm", "exec", "nx", "run", "database-connection:gen-client"]
 
 CMD ["pnpm", "exec", "nx", "run", "recipes-persistence-rest-api:serve"]
 # CMD ["ls", "-a", "apps/recipes-persistence-rest-api/"]
+
+

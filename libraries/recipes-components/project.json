@@ -6,16 +6,21 @@
   "targets": {
     "lint": {
       "executor": "@nrwl/linter:eslint",
-      "outputs": ["{options.outputFile}"],
+      "outputs": [
+        "{options.outputFile}"
+      ],
       "options": {
         "lintFilePatterns": [
           "libraries/recipes-components/**/*.{ts,tsx,js,jsx}"
-        ]
+        ],
+        "fix": true
       }
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/libraries/recipes-components"],
+      "outputs": [
+        "coverage/libraries/recipes-components"
+      ],
       "options": {
         "jestConfig": "libraries/recipes-components/jest.config.ts",
         "passWithNoTests": true

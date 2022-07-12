@@ -26,7 +26,8 @@
       "options": {
         "lintFilePatterns": [
           "libraries/recipes-models/**/*.ts"
-        ]
+        ],
+        "fix": true
       }
     },
     "test": {

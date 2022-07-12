@@ -5,14 +5,21 @@
   "targets": {
     "lint": {
       "executor": "@nrwl/linter:eslint",
-      "outputs": ["{options.outputFile}"],
+      "outputs": [
+        "{options.outputFile}"
+      ],
       "options": {
-        "lintFilePatterns": ["libraries/health-check-router/**/*.ts"]
+        "lintFilePatterns": [
+          "libraries/health-check-router/**/*.ts"
+        ],
+        "fix": true
       }
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/libraries/health-check-router"],
+      "outputs": [
+        "coverage/libraries/health-check-router"
+      ],
       "options": {
         "jestConfig": "libraries/health-check-router/jest.config.ts",
         "passWithNoTests": true

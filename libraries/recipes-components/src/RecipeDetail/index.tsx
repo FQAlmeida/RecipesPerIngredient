@@ -1,4 +1,4 @@
-import { Container, Divider, Grid, Paper, Step } from "@mui/material";
+import { Container, Divider, Grid, Paper } from "@mui/material";
 import { Recipe, Media } from "@recipes-per-ingredient/recipes-models";
 import { RecipeMainDetail } from "./RecipeMainDetails";
 import { EggTwoTone as EggIcon } from "@mui/icons-material";

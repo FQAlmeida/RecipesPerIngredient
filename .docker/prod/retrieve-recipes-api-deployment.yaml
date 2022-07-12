@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert -f ../../docker-compose.prod.yml
+    kompose.version: 1.26.0 (40646f47)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: retrieve-recipes-api
+  name: retrieve-recipes-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: retrieve-recipes-api
+  strategy: {}
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert -f ../../docker-compose.prod.yml
+        kompose.version: 1.26.0 (40646f47)
+      creationTimestamp: null
+      labels:
+        io.kompose.network/persistence-layer: "true"
+        io.kompose.network/retrieve: "true"
+        io.kompose.service: retrieve-recipes-api
+    spec:
+      containers:
+        - env:
+            - name: PERSISTENCE_URI
+              value: http://persistence-recipes-api:3001/api
+            - name: PORT
+              value: "3002"
+          image: retrieve-recipes-api
+          name: retrieve-recipes-api
+          ports:
+            - containerPort: 3002
+          resources: {}
+      restartPolicy: Always
+status: {}

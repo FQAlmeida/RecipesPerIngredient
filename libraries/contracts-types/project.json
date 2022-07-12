@@ -26,7 +26,8 @@
       "options": {
         "lintFilePatterns": [
           "libraries/contracts-types/**/*.ts"
-        ]
+        ],
+        "fix": true
       }
     },
     "test": {
