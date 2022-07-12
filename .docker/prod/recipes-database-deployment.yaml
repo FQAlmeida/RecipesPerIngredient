@@ -1,0 +1,63 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert -f ../../docker-compose.prod.yml
+    kompose.version: 1.26.0 (40646f47)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: recipes-database
+  name: recipes-database
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: recipes-database
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert -f ../../docker-compose.prod.yml
+        kompose.version: 1.26.0 (40646f47)
+      creationTimestamp: null
+      labels:
+        io.kompose.network/database: "true"
+        io.kompose.service: recipes-database
+    spec:
+      containers:
+        - env:
+            - name: POSTGRES_DATA
+              value: /var/lib/postgresql/data/pgdata
+            - name: POSTGRES_DB
+              value: postgress
+            - name: POSTGRES_PASSWORD
+              value: postgress
+            - name: POSTGRES_USER
+              value: postgress
+          image: postgres:latest
+          livenessProbe:
+            exec:
+              command:
+                - pg_isready
+                - -q
+                - -d
+                - postgres
+                - -U
+                - postgress
+            failureThreshold: 10
+            periodSeconds: 10
+            timeoutSeconds: 45
+          name: recipes-database
+          ports:
+            - containerPort: 5432
+          resources: {}
+          volumeMounts:
+            - mountPath: /var/lib/postgresql/data
+              name: db-storage
+      restartPolicy: Always
+      volumes:
+        - name: db-storage
+          persistentVolumeClaim:
+            claimName: db-storage
+status: {}

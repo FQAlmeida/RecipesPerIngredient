@@ -1,0 +1,15 @@
+{
+  "$schema": "./node_modules/nx/schemas/workspace-schema.json",
+  "version": 2,
+  "projects": {
+    "contracts-types": "libraries/contracts-types",
+    "database-connection": "libraries/database-connection",
+    "health-check-router": "libraries/health-check-router",
+    "recipes-components": "libraries/recipes-components",
+    "recipes-models": "libraries/recipes-models",
+    "recipes-persistence-rest-api": "apps/recipes-persistence-rest-api",
+    "recipes-retrieve-rest-api": "apps/recipes-retrieve-rest-api",
+    "recipes-web-interface": "apps/recipes-web-interface",
+    "recipes-web-interface-e2e": "apps/recipes-web-interface-e2e"
+  }
+}

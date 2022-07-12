@@ -1,0 +1,95 @@
+version: '3'
+
+services:
+  # DB
+  recipes-database:
+    image: postgres:latest
+    restart: always
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "pg_isready",
+          "-q",
+          "-d",
+          "postgres",
+          "-U",
+          "postgress"
+        ]
+      timeout: 45s
+      interval: 10s
+      retries: 10
+    environment:
+      POSTGRES_DB: postgress
+      POSTGRES_USER: postgress
+      POSTGRES_PASSWORD: postgress
+      POSTGRES_DATA: /var/lib/postgresql/data/pgdata
+    volumes:
+      - db-storage:/var/lib/postgresql/data
+    networks:
+      - database
+    ports:
+      - "5432:5432"
+
+  # Server
+  persistence-recipes-api:
+    container_name: persistence-recipes-api
+    build:
+      context: .
+      dockerfile: .docker/images/rest-api.persistence.prod.dockerfile
+    ports:
+      - 3001:3001
+    environment:
+      - DATABASE_URL=postgres://postgress:postgress@recipes-database:5432/postgress
+      - PORT=3001
+    depends_on:
+      - recipes-database
+    networks:
+      - database
+      - persistence-layer
+
+  retrieve-recipes-api:
+    container_name: retrieve-recipes-api
+    build:
+      context: .
+      dockerfile: .docker/images/rest-api.retrieve.prod.dockerfile
+    ports:
+      - 3002:3002
+    environment:
+      - PORT=3002
+      - PERSISTENCE_URI=http://persistence-recipes-api:3001/api
+    depends_on:
+      - persistence-recipes-api
+    networks:
+      - persistence-layer
+      - retrieve
+
+  web-interface-recipes:
+    container_name: web-interface-recipes
+    build:
+      context: .
+      dockerfile: .docker/images/interface.web.prod.dockerfile
+    ports:
+      - 3003:3003
+    environment:
+      - PORT=3003
+      - RETRIEVE_URI=http://retrieve-recipes-api:3002/api
+    depends_on:
+      - retrieve-recipes-api
+    networks:
+      - client
+      - retrieve
+    labels:
+      kompose.service.type: LoadBalancer
+      kompose.service.expose: "localhost"
+
+volumes:
+  db-storage:
+  pg-admin-volume:
+
+
+networks:
+  client:
+  database:
+  persistence-layer:
+  retrieve:

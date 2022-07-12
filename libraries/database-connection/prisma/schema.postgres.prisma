@@ -1,0 +1,96 @@
+datasource db {
+    provider = "postgres"
+    url      = env("DATABASE_URL")
+}
+
+generator client {
+    provider = "prisma-client-js"
+}
+
+model Media {
+    cod_media  Int    @id @default(autoincrement())
+    media_uri  String
+    recipe     Recipe @relation(fields: [cod_recipe], references: [cod_recipe])
+    cod_recipe Int
+}
+
+model Recipe {
+    cod_recipe           Int                 @id @default(autoincrement())
+    name                 String
+    difficulty_level     DifficultyLevel     @relation(fields: [cod_difficulty_level], references: [cod_difficulty_level])
+    cod_difficulty_level Int
+    steps                Step[]
+    preparation_time     String
+    cooking_time         String?
+    ingredients_recipe   IngredientsRecipe[]
+    tools_recipe         ToolsRecipe[]
+    serves_adults        Int
+    medias               Media[]
+}
+
+model Step {
+    cod_step            Int        @id @default(autoincrement())
+    recipe              Recipe     @relation(fields: [cod_recipe], references: [cod_recipe])
+    cod_recipe          Int
+    depends_on          Step?      @relation("depends_on", fields: [cod_depends_on_step], references: [cod_step])
+    dependent           Step?      @relation("depends_on")
+    cod_depends_on_step Int?       @unique
+    technique           Technique? @relation(fields: [cod_technique], references: [cod_technique])
+    cod_technique       Int?
+    description         String
+
+    @@unique([cod_recipe, cod_depends_on_step], name: "step_unique_dependency")
+}
+
+model Technique {
+    cod_technique Int    @id @default(autoincrement())
+    step          Step[]
+    name          String
+    description   String
+}
+
+model Tool {
+    cod_tool     Int           @id @default(autoincrement())
+    name         String
+    details      String
+    tools_recipe ToolsRecipe[]
+}
+
+model ToolsRecipe {
+    cod_tools_recipe Int     @id @default(autoincrement())
+    tool             Tool    @relation(fields: [cod_tool], references: [cod_tool])
+    cod_tool         Int
+    recipe           Recipe  @relation(fields: [cod_recipe], references: [cod_recipe])
+    cod_recipe       Int
+    is_required      Boolean
+}
+
+model Ingredient {
+    cod_ingredient     Int                 @id @default(autoincrement())
+    name               String
+    ingredients_recipe IngredientsRecipe[]
+}
+
+model IngredientsRecipe {
+    cod_ingredient_recipe Int             @id @default(autoincrement())
+    ingredient            Ingredient      @relation(fields: [cod_ingredient], references: [cod_ingredient])
+    cod_ingredient        Int
+    recipe                Recipe          @relation(fields: [cod_recipe], references: [cod_recipe])
+    cod_recipe            Int
+    is_required           Boolean
+    quatity               Float
+    measurement_unit      MeasurementUnit @relation(fields: [cod_measurement_unit], references: [cod_measurement_unit])
+    cod_measurement_unit  Int
+}
+
+model MeasurementUnit {
+    cod_measurement_unit Int                 @id @default(autoincrement())
+    name                 String
+    ingredients_recipe   IngredientsRecipe[]
+}
+
+model DifficultyLevel {
+    cod_difficulty_level Int      @id @default(autoincrement())
+    level                String
+    recipes              Recipe[]
+}

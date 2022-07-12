@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert -f ../../docker-compose.prod.yml
+    kompose.service.expose: localhost
+    kompose.service.type: LoadBalancer
+    kompose.version: 1.26.0 (40646f47)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: web-interface-recipes
+  name: web-interface-recipes
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: web-interface-recipes
+  strategy: {}
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert -f ../../docker-compose.prod.yml
+        kompose.service.expose: localhost
+        kompose.service.type: LoadBalancer
+        kompose.version: 1.26.0 (40646f47)
+      creationTimestamp: null
+      labels:
+        io.kompose.network/client: "true"
+        io.kompose.network/retrieve: "true"
+        io.kompose.service: web-interface-recipes
+    spec:
+      containers:
+        - env:
+            - name: PORT
+              value: "3003"
+            - name: RETRIEVE_URI
+              value: http://retrieve-recipes-api:3002/api
+          image: web-interface-recipes
+          name: web-interface-recipes
+          ports:
+            - containerPort: 3003
+          resources: {}
+      restartPolicy: Always
+status: {}

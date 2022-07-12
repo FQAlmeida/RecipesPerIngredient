@@ -1,0 +1,12 @@
+{
+  "name": "@recipes-per-ingredient/database-connection",
+  "version": "0.0.1",
+  "type": "commonjs",
+  "license": "MIT",
+  "author": "FQA",
+  "scripts": {
+    "deploy": "pnpm prisma migrate deploy --schema ./prisma/schema.postgres.prisma",
+    "migrate": "pnpm prisma migrate dev --schema ./prisma/schema.postgres.prisma",
+    "generate": "pnpm prisma generate --schema ./prisma/schema.postgres.prisma"
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/recipes-web-interface-e2e/src",
+  "projectType": "application",
+  "targets": {
+    "e2e": {
+      "executor": "@nrwl/cypress:cypress",
+      "options": {
+        "cypressConfig": "apps/recipes-web-interface-e2e/cypress.json",
+        "devServerTarget": "recipes-web-interface:serve:development"
+      },
+      "configurations": {
+        "production": {
+          "devServerTarget": "recipes-web-interface:serve:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": [
+        "{options.outputFile}"
+      ],
+      "options": {
+        "lintFilePatterns": [
+          "apps/recipes-web-interface-e2e/**/*.{js,ts}"
+        ],
+        "fix": true
+      }
+    }
+  },
+  "tags": [],
+  "implicitDependencies": [
+    "recipes-web-interface"
+  ]
+}
