@@ -12,7 +12,7 @@ export enum DifficultLevelEnum {
 }
 
 export interface DifficultLevel {
-    difficult: DifficultLevel | string;
+    difficult: DifficultLevelEnum | string;
 }
 
 export interface DifficultLevelRegister extends DifficultLevel, Register {

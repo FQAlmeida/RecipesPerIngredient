@@ -5,8 +5,8 @@
   "license": "MIT",
   "author": "FQA",
   "scripts": {
-    "deploy": "pnpm prisma migrate deploy --schema ./prisma/schema.postgres.prisma",
-    "migrate": "pnpm prisma migrate dev --schema ./prisma/schema.postgres.prisma",
-    "generate": "pnpm prisma generate --schema ./prisma/schema.postgres.prisma"
+    "deploy": "pnpx prisma migrate deploy --schema ./prisma/schema.postgres.prisma",
+    "migrate": "pnpx prisma migrate dev --schema ./prisma/schema.postgres.prisma",
+    "generate": "pnpx prisma generate --schema ./prisma/schema.postgres.prisma"
   }
 }
