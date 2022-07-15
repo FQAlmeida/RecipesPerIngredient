@@ -15,7 +15,7 @@ const fetcher = async (params: { baseUrl: string, ingredients: string[]; }): Pro
     const { ingredients, baseUrl } = params;
 
     let url: string, method: string;
-    if (!ingredients || ingredients.length === 0) {
+    if (!ingredients || ingredients.filter((i) => i.trim().replace(/\s+/g, '').length > 0).length === 0) {
         url = `${baseUrl}/top/20`;
         method = "GET";
     } else {
@@ -44,7 +44,7 @@ const fetcher = async (params: { baseUrl: string, ingredients: string[]; }): Pro
 };
 
 const Home: NextPage = () => {
-    const [ingredients, setIngredients] = useState<string[]>(["macarrão"]);
+    const [ingredients, setIngredients] = useState<string[]>([]);
     const { data, error } = useSWR("/api", (baseUrl) => fetcher({ baseUrl, ingredients }));
 
     if (error) {

@@ -8,6 +8,7 @@ import { StepsList } from "./StepsList";
 
 export function RecipeDetail(props: { recipe: Recipe & { medias: Media[]; }; }) {
     const { recipe } = props;
+    const media = recipe.medias[0] ? recipe.medias[0].source : "https://www.jasminealimentos.com/wp-content/uploads/2016/08/comfort-food-1.jpg"
     return (
         <Container>
             <Paper
@@ -20,8 +21,8 @@ export function RecipeDetail(props: { recipe: Recipe & { medias: Media[]; }; }) 
                         overflow: "hidden",
                     }}>
                         <img
-                            src={`${recipe.medias[0].source}`}
-                            srcSet={`${recipe.medias[0].source}`}
+                            src={`${media}`}
+                            srcSet={`${media}`}
                             alt={`${recipe.name}`}
                             loading="lazy"
                             style={{
@@ -46,7 +47,7 @@ export function RecipeDetail(props: { recipe: Recipe & { medias: Media[]; }; }) 
                         <ToolList tools={recipe.tools} />
                     </Grid>
                     <Grid item xs={6} >
-                        <StepsList steps={recipe.steps.map((step, index) => {return{...step, index}})}/>
+                        <StepsList steps={recipe.steps.map((step, index) => { return { ...step, index } })} />
                     </Grid>
                 </Grid>
             </Paper>

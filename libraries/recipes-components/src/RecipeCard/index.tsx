@@ -21,7 +21,7 @@ export function RecipeCard(props: { recipe: RecipeData; }) {
                     <CardMedia
                         component="img"
                         height={240}
-                        image={medias[0].source}
+                        image={medias[0] ? medias[0].source : "https://www.jasminealimentos.com/wp-content/uploads/2016/08/comfort-food-1.jpg"}
                         alt="Recipe Image"
                     />
                     <CardContent>
