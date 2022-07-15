@@ -5,4 +5,4 @@ export interface Technique {
     description: string;
 }
 
-export interface TechniqueRegister extends Technique, Register { }
+export type TechniqueRegister = Technique & Register

@@ -1,5 +1,4 @@
 import { BadRequestException, Body, Controller, Get, HttpCode, Param, Post } from "@nestjs/common";
-import { RecipeRegisterContract } from "@recipes-per-ingredient/contracts-types";
 
 import { AppService } from "./app.service";
 
@@ -8,7 +7,7 @@ export class AppController {
   constructor(private readonly appService: AppService) { }
 
   @Get(":qtd")
-  async getTop(@Param() params: { qtd: string; }): Promise<RecipeRegisterContract[]> {
+  async getTop(@Param() params: { qtd: string; }) {
     const { qtd } = params;
     const parsedQtd = parseInt(qtd);
     if (isNaN(parsedQtd)) {
@@ -18,7 +17,7 @@ export class AppController {
   }
 
   @Get("recipes/:id")
-  async getById(@Param() params: { id: string; }): Promise<RecipeRegisterContract> {
+  async getById(@Param() params: { id: string; }){
     const { id } = params;
     const parsedId = parseInt(id);
 

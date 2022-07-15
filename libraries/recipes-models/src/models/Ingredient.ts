@@ -11,8 +11,7 @@ export enum MeasureUnitEnum {
 export interface MeasureUnit {
     name: MeasureUnit | string;
 }
-export interface MeasureUnitRegister extends MeasureUnit, Register {
-}
+export type MeasureUnitRegister = MeasureUnit & Register
 
 export interface Ingredient {
     name: string;

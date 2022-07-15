@@ -6,4 +6,4 @@ export interface Tool {
     is_required: boolean;
 }
 
-export interface ToolRegister extends Tool, Register { }
+export type ToolRegister = Tool & Register

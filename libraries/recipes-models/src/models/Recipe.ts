@@ -15,8 +15,7 @@ export interface DifficultLevel {
     difficult: DifficultLevelEnum | string;
 }
 
-export interface DifficultLevelRegister extends DifficultLevel, Register {
-}
+export type DifficultLevelRegister = DifficultLevel &  Register;
 
 export interface Recipe {
     name: string;

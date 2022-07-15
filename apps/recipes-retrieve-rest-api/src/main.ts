@@ -5,10 +5,14 @@
 
 import { Logger } from "@nestjs/common";
 import { NestFactory } from "@nestjs/core";
+import axios from "axios";
 
 import { AppModule } from "./app/app.module";
 
 async function bootstrap() {
+  axios.defaults.validateStatus = function () {
+    return true;
+  };
   const app = await NestFactory.create(AppModule);
   const globalPrefix = "api";
   app.setGlobalPrefix(globalPrefix);
