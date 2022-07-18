@@ -1,3 +1,3 @@
 export { getRecipes } from "./lib/interface";
-import type { GetRecipesParamsType, GetRecipesReturnType } from "./lib/interface";
-export { GetRecipesParamsType, GetRecipesReturnType };
+import type { GetRecipesParamsType, GetRecipesReturnType, Recipe } from "./lib/interface";
+export { GetRecipesParamsType, GetRecipesReturnType, Recipe };

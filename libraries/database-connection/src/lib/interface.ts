@@ -8,7 +8,10 @@ const prisma = new PrismaClient({
 
 export type GetRecipesParamsType = { filter?: Prisma.RecipeWhereInput, take?: number; };
 type UnboxPromise<T extends Promise<unknown>> = T extends Promise<infer U> ? U : never;
+type ArrayElement<ArrayType extends readonly unknown[]> = 
+  ArrayType extends readonly (infer ElementType)[] ? ElementType : never;
 export type GetRecipesReturnType = UnboxPromise<ReturnType<typeof getRecipes>>;
+export type Recipe = ArrayElement<GetRecipesReturnType>
 
 export async function getRecipes(args: GetRecipesParamsType) {
     return await prisma.recipe.findMany({
