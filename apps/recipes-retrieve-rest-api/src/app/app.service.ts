@@ -1,10 +1,10 @@
-import { BadRequestException, Injectable, InternalServerErrorException } from "@nestjs/common";
-import { ErrorMessage, GetRecipesParamsType, GetRecipesReturnType, isInstanceOfError, RecipeRegisterContract, parseRecipes } from "@recipes-per-ingredient/contracts-types";
+import { Injectable, InternalServerErrorException, NotFoundException } from "@nestjs/common";
+import { ErrorMessage, GetRecipesParamsType, isInstanceOfError, RecipeRegisterContract } from "@recipes-per-ingredient/contracts-types";
 import axios from "axios";
 
 const PERSISTENCE_URI = process.env.PERSISTENCE_URI || "localhost:3000";
 
-type PersistenceResponse = GetRecipesReturnType | ErrorMessage
+type PersistenceResponse = RecipeRegisterContract[] | ErrorMessage
 type RetrieveResponse = RecipeRegisterContract | ErrorMessage
 
 @Injectable()
@@ -30,11 +30,11 @@ export class AppService {
       }
       return data;
     }
-    const recipes = parseRecipes(data);
+    const recipes = data;
     if (recipes.length > 0) {
       return recipes[0];
     }
-    throw new BadRequestException(`No recipe with code: ${id}`);
+    throw new NotFoundException(`No recipe with code: ${id}`);
   }
 
   async getWithIngredients(ingredients: string[]) {
@@ -70,7 +70,7 @@ export class AppService {
       }
       return data;
     }
-    const recipes = parseRecipes(data);
+    const recipes = data;
     return recipes;
   }
 
@@ -90,7 +90,7 @@ export class AppService {
       }
       return data;
     }
-    const recipes = parseRecipes(data);
+    const recipes = data;
     return recipes;
   }
 }

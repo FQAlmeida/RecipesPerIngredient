@@ -11,8 +11,7 @@ export class AppController {
 
   @Post()
   @HttpCode(200)
-  async getRecipes(@Body() payload: GetRecipesParamsType)
-    : Promise<ResponseType> {
+  async getRecipes(@Body() payload: GetRecipesParamsType) {
     if (!payload.filter && !payload.take) {
       throw new BadRequestException({ "bad request": "payload should not be empty" });
     }
