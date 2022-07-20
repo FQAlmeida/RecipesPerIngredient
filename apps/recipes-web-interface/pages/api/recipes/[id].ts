@@ -9,10 +9,9 @@ axios.defaults.validateStatus = function () {
 
 type RetrieveResponse = RecipeRegisterContract | ErrorMessage
 
-export default async function getRecipesWithIngredients(req: { method: string, query: { id?: number; }; }, res, next) {
+export default async function getRecipesWithIngredients(req: { method: string, query: { id?: number; }; }, res) {
     if (req.method !== "GET") {
         res.status(401);
-        next();
         return;
     }
     async function getRecipeById(id: number) {
@@ -27,7 +26,6 @@ export default async function getRecipesWithIngredients(req: { method: string, q
 
         if (isInstanceOfError(data)) {
             res.status(data.statusCode);
-            next();
             return;
         }
 

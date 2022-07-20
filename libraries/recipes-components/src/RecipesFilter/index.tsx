@@ -5,7 +5,8 @@ import { IngredientFilterInput } from "../IngredientsInput";
 import {
     Container,
     Button,
-    Stack
+    Stack,
+    Box
 } from "@mui/material";
 
 type inputValuesType = { [key: number]: string; };
@@ -80,7 +81,9 @@ export function IngredientsFilterForm(props: IngredientsFilterFormProps) {
     return (
         <Container>
             <Stack spacing={2}>
-                {renderInputs(inputValues)}
+                <Box id='inputs-container'>
+                    {renderInputs(inputValues)}
+                </Box>
                 <Button onClick={handleAddInput} variant="contained" color="primary">
                     Adicionar
                 </Button>

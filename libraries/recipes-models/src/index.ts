@@ -6,7 +6,7 @@ export type { Technique, TechniqueRegister } from "./models/Technique";
 export type { Tool, ToolRegister } from "./models/Tool";
 export { RandomMediaFactory, RandomMediaTypeFactory } from "./factories/RandomMediaFactory";
 export { RandomDifficultyLevel, RandomIngredientFactory, RandomIngredientsFactory, RandomMesurementUnit, RandomRecipeFactory, RandomRecipesFactory, RandomStepFactory, RandomStepsFactory, RandomTechniqueFactory, RandomToolFactory, RandomToolsFactory } from "./factories/RandomRecipeFactory";
-export { convertToDuration } from "./utils/convert_to_interval";
+export { convertToDuration } from "./utils/convert-to-duration";
 export {
     MeasureUnitEnum
 } from "./models/Ingredient";

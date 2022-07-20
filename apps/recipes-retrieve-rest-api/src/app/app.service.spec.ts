@@ -110,10 +110,10 @@ describe("Retrieve Top Recipes", () => {
     beforeEach(() => {
         service = new AppService();
     })
-    test(`Given 15 recipes are registered on the database, 
-            when the service to retrieve top recipes is called with top 10,
-            then 10 of the recipes in the database should be returned`, async () => {
-        const recipe_on_db: RecipeRegisterContract = {
+    test(`Given 3 recipes are registered on the database, 
+            when the service to retrieve top recipes is called with top 2,
+            then 2 of the recipes in the database should be returned`, async () => {
+        const recipe_on_db: RecipeRegisterContract[] = [{
             cod: 1,
             ingredients: [],
             difficult_level: {
@@ -121,23 +121,56 @@ describe("Retrieve Top Recipes", () => {
                 difficult: "Easy"
             },
             medias: [],
-            name: "A recipe",
+            name: "A recipe 1",
             preparation_time: "PT5M",
             cooking_time: "PT5M",
             serves_adults: 2,
             steps: [],
             tools: []
-        }
-        mockedAxios.post.mockResolvedValue({ data: [recipe_on_db] })
-        const response = await service.getById(recipe_on_db.cod) as RecipeRegisterContract
+        }, {
+            cod: 2,
+            ingredients: [],
+            difficult_level: {
+                cod: 1,
+                difficult: "Easy"
+            },
+            medias: [],
+            name: "A recipe 2",
+            preparation_time: "PT5M",
+            cooking_time: "PT5M",
+            serves_adults: 2,
+            steps: [],
+            tools: []
+        }, {
+            cod: 3,
+            ingredients: [],
+            difficult_level: {
+                cod: 1,
+                difficult: "Easy"
+            },
+            medias: [],
+            name: "A recipe 3",
+            preparation_time: "PT5M",
+            cooking_time: "PT5M",
+            serves_adults: 2,
+            steps: [],
+            tools: []
+        },
+        ]
+        const query_params = 2
+        mockedAxios.post.mockResolvedValue({ data: recipe_on_db.slice(0, query_params) })
+        const response = await service.getTop(query_params) as RecipeRegisterContract[]
         expect(response).not.toHaveProperty("statusCode")
 
-        expect(response.cod).toBe(recipe_on_db.cod)
+        expect(response).toHaveLength(query_params)
+        response.map(recipe => {
+            expect(recipe_on_db.map(r => r.cod)).toContain(recipe.cod)
+        })
     })
-    test(`Given 5 recipes are registered on the database, 
-            when the service to retrieve top recipes is called with top 10,
-            then 5 of the recipes in the database should be returned`, async () => {
-        const recipe_on_db: RecipeRegisterContract = {
+    test(`Given 3 recipes are registered on the database, 
+    when the service to retrieve top recipes is called with top 4,
+    then 3 of the recipes in the database should be returned`, async () => {
+        const recipe_on_db: RecipeRegisterContract[] = [{
             cod: 1,
             ingredients: [],
             difficult_level: {
@@ -145,26 +178,61 @@ describe("Retrieve Top Recipes", () => {
                 difficult: "Easy"
             },
             medias: [],
-            name: "A recipe",
+            name: "A recipe 1",
             preparation_time: "PT5M",
             cooking_time: "PT5M",
             serves_adults: 2,
             steps: [],
             tools: []
-        }
-        mockedAxios.post.mockResolvedValue({ data: [recipe_on_db] })
-        const response = await service.getById(recipe_on_db.cod) as RecipeRegisterContract
+        }, {
+            cod: 2,
+            ingredients: [],
+            difficult_level: {
+                cod: 1,
+                difficult: "Easy"
+            },
+            medias: [],
+            name: "A recipe 2",
+            preparation_time: "PT5M",
+            cooking_time: "PT5M",
+            serves_adults: 2,
+            steps: [],
+            tools: []
+        }, {
+            cod: 3,
+            ingredients: [],
+            difficult_level: {
+                cod: 1,
+                difficult: "Easy"
+            },
+            medias: [],
+            name: "A recipe 3",
+            preparation_time: "PT5M",
+            cooking_time: "PT5M",
+            serves_adults: 2,
+            steps: [],
+            tools: []
+        },
+        ]
+        const query_params = 4
+        const expected_lenght = 3
+        mockedAxios.post.mockResolvedValue({ data: recipe_on_db })
+        const response = await service.getTop(query_params) as RecipeRegisterContract[]
         expect(response).not.toHaveProperty("statusCode")
 
-        expect(response.cod).toBe(recipe_on_db.cod)
+        expect(response).toHaveLength(expected_lenght)
+        response.map(recipe => {
+            expect(recipe_on_db.map(r => r.cod)).toContain(recipe.cod)
+        })
     })
     test(`Given no recipes are registered on the database, 
     when the service to retrieve top recipes is called with top 10,
     then a empty list should be returned`, async () => {
         const recipes_on_db: RecipeRegisterContract[] = []
-        const query_param = 1
+        const query_param = 10
         mockedAxios.post.mockResolvedValue({ data: recipes_on_db })
-        await expect(service.getById(query_param)).rejects.toThrow(NotFoundException)
+        const response = await service.getTop(query_param) as RecipeRegisterContract[]
+        expect(response).toHaveLength(0)
+        expect(response).toEqual([])
     })
 })
-

@@ -17,7 +17,7 @@ export function RecipeMainDetail(props: {
         <Container style={{ height: "100%" }}>
             <Paper style={{ height: "100%", display: "grid", alignItems: "center" }}>
                 <Box marginX="1%">
-                    <Typography variant="h4" component="h1" textAlign="center">
+                    <Typography variant="h4" component="h1" textAlign="center" id="recipe-name">
                         {recipe.name}
                     </Typography>
                     <List>
