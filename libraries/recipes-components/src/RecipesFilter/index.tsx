@@ -84,7 +84,7 @@ export function IngredientsFilterForm(props: IngredientsFilterFormProps) {
                 <Box id='inputs-container'>
                     {renderInputs(inputValues)}
                 </Box>
-                <Button onClick={handleAddInput} variant="contained" color="primary">
+                <Button onClick={handleAddInput} variant="contained" color="primary" id="add-input">
                     Adicionar
                 </Button>
             </Stack>
