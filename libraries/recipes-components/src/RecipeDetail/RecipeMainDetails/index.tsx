@@ -25,7 +25,7 @@ export function RecipeMainDetail(props: {
                             <ListItemIcon>
                                 <DifficultyIcon />
                             </ListItemIcon>
-                            <ListItemText>
+                            <ListItemText id="recipe-difficulty">
                                 Difficulty: {recipe.difficult_level.difficult.toString()}
                             </ListItemText>
                         </ListItem>
@@ -33,15 +33,15 @@ export function RecipeMainDetail(props: {
                             <ListItemIcon>
                                 <FaceIcon />
                             </ListItemIcon>
-                            <ListItemText>
-                                Servers: {recipe.serves_adults}
+                            <ListItemText id="recipe-serves">
+                                Serves: {recipe.serves_adults}
                             </ListItemText>
                         </ListItem>
                         <ListItem>
                             <ListItemIcon>
                                 <AccessTimeIcon />
                             </ListItemIcon>
-                            <ListItemText>
+                            <ListItemText id="recipe-prep-time">
                                 Preparation Time: {recipe.preparation_time.toHuman()}
                             </ListItemText>
                         </ListItem>
@@ -49,7 +49,7 @@ export function RecipeMainDetail(props: {
                             <ListItemIcon>
                                 <CookieIcon />
                             </ListItemIcon>
-                            <ListItemText>
+                            <ListItemText id="recipe-cook-time">
                                 Cooking Time: {recipe.cooking_time?.toHuman()}
                             </ListItemText>
                         </ListItem>

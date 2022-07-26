@@ -12,7 +12,7 @@ export function IngredientFilterInput(props: IngredientFilterInputProps) {
     const { value, valueKey, onChange, onRemove } = props;
     return (
         <Paper sx={{ p: '4px 4px' }} 
-            id={`ingredient-input-${valueKey}`}>
+            data-cy={`ingredient-input-${valueKey}`}>
             <Stack direction="row">
                 <TextField
                     id={`ingredient-input-field-${valueKey}`}
@@ -26,7 +26,7 @@ export function IngredientFilterInput(props: IngredientFilterInputProps) {
                     }}
                 />
                 <Divider orientation="vertical" sx={{ height: 32, m: 0.5 }} />
-                <IconButton sx={{ p: '8px' }} onClick={() => { onRemove(valueKey); }} className="delete-button">
+                <IconButton sx={{ p: '8px' }} onClick={() => { onRemove(valueKey); }} data-cy={`delete-button-${valueKey}`}>
                     <DeleteIcon />
                 </IconButton>
             </Stack>

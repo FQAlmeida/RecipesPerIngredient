@@ -36,10 +36,10 @@ export function IngredientsList(props: {
         return ingredients.map(renderItem);
     };
     return (
-        <Container >
+        <Container id="recipe-ingredients-container">
             <Paper >
                 <Box margin="1%">
-                    <Typography variant="h5" component="h5" textAlign="center">
+                    <Typography variant="h5" component="h5" textAlign="center" id="recipe-ingredients">
                         Ingredients
                     </Typography>
                     <List dense>

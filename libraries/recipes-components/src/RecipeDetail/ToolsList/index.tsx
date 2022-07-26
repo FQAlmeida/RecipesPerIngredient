@@ -29,10 +29,10 @@ export function ToolList(props: {
         return tools.map(renderItem);
     };
     return (
-        <Container style={{ height: "100%" }}>
+        <Container style={{ height: "100%" }} id="recipe-tools-container">
             <Paper style={{ height: "100%" }}>
                 <Box margin="1%">
-                <Typography variant="h5" component="h5" textAlign="center">
+                    <Typography variant="h5" component="h5" textAlign="center" id="recipe-tools">
                         Tools
                     </Typography>
                     <List dense>

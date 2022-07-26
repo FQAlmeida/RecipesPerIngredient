@@ -14,8 +14,8 @@ describe("recipes-web-interface-principal", () => {
     add_button.click()
     const inputs_container = cy.get("[id=inputs-container]").find("input")
     inputs_container.should("have.length", 2)
-    const first_input = inputs_container.get("[id=ingredient-input-1]")
-    const first_input_delete = first_input.get("[class=delete-button]")
+    const first_input = inputs_container.get("[data-cy=ingredient-input-1]")
+    const first_input_delete = first_input.get("[data-cy=delete-button-1]")
     first_input_delete.click()
     cy.get("[id=inputs-container]").find("input").should("have.length", 1)
   });

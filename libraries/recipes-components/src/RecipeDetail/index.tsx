@@ -21,6 +21,7 @@ export function RecipeDetail(props: { recipe: Recipe & { medias: Media[]; }; }) 
                         overflow: "hidden",
                     }}>
                         <img
+                            id="recipe-image"
                             src={`${media}`}
                             srcSet={`${media}`}
                             alt={`${recipe.name}`}

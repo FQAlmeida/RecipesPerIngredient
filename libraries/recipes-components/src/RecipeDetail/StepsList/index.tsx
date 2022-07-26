@@ -28,10 +28,10 @@ export function StepsList(props: {
         return steps.map(renderItem);
     };
     return (
-        <Container >
+        <Container id="recipe-steps-container">
             <Paper >
                 <Box margin="1%">
-                    <Typography variant="h5" component="h5" textAlign="center">
+                    <Typography variant="h5" component="h5" textAlign="center" id="recipe-steps">
                         Steps
                     </Typography>
                     <List dense>
