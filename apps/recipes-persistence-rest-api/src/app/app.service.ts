@@ -10,7 +10,8 @@ import {
 export class AppService {
   async getRecipes(request: GetRecipesParamsType): Promise<RecipeRegisterContract[]> {
     const data = await getRecipesFromDb(request);
-    const recipes = parseRecipes(data)
+    const recipes = parseRecipes(data);
+    
     return recipes;
   }
 }

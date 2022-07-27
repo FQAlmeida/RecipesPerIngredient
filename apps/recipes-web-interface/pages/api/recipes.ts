@@ -13,7 +13,7 @@ export default async function getRecipesWithIngredients(req: { method: string, b
     async function getRecipesWithIngredients(ingredients: string[]) {
         const response = await axios.post<RetrieveResponse>(
             process.env.RETRIEVE_URI || "localhost:3000",
-            ingredients,
+            {ingredients},
             {
                 method: "POST",
                 headers: {
@@ -36,5 +36,7 @@ export default async function getRecipesWithIngredients(req: { method: string, b
         return parseRecipes(recipes);
     }
     const response = await getRecipesWithIngredients(req.body.ingredients);
+    console.log(response);
+    
     res.status(200).send(response);
 }

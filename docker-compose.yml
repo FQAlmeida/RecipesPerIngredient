@@ -30,6 +30,27 @@ services:
       - database
     ports:
       - "5432:5432"
+  pgbackups:
+    container_name: Backup
+    image: prodrigestivill/postgres-backup-local
+    restart: always
+    volumes:
+      - ./.docker/data:/backups
+    depends_on:
+      - recipes-database
+    environment:
+      - POSTGRES_HOST=recipes-database
+      - POSTGRES_DB=postgress
+      - POSTGRES_USER=postgress
+      - POSTGRES_PASSWORD=postgress
+      - POSTGRES_EXTRA_OPTS=-Z9 --schema=public --blobs
+      - SCHEDULE=@every 0h01m00s
+      - BACKUP_KEEP_DAYS=7
+      - BACKUP_KEEP_WEEKS=4
+      - BACKUP_KEEP_MONTHS=6
+      - HEALTHCHECK_PORT=8082
+    networks:
+      - database
 
   # DB Visualizer
   adminer:
@@ -118,6 +139,7 @@ services:
 volumes:
   db-storage:
   pg-admin-volume:
+
 
 networks:
   client:

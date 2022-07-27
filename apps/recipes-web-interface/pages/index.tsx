@@ -22,6 +22,7 @@ const fetcher = async (params: { baseUrl: string, ingredients: string[]; }): Pro
         url = `${baseUrl}/recipes`;
         method = "POST";
     }
+    console.log(`Getting ${url}`);
     const fetchResponse = await fetch(url, {
         method: method,
         headers: {
@@ -30,8 +31,8 @@ const fetcher = async (params: { baseUrl: string, ingredients: string[]; }): Pro
         body: method === "POST" ? JSON.stringify({ ingredients }) : undefined
     });
     const jsonResponse: RecipeRegisterContract[] = await fetchResponse.json();
-    if (!jsonResponse) {
-        return await fetcher({ baseUrl: "/api", ingredients: [] });
+    if (!jsonResponse || jsonResponse.length <= 0) {
+        return await fetcher({ baseUrl, ingredients: [] });
     }
     const response = jsonResponse.map<RecipeRegister>((recipe) => {
         return {
@@ -40,6 +41,7 @@ const fetcher = async (params: { baseUrl: string, ingredients: string[]; }): Pro
             cooking_time: recipe.cooking_time ? convertToDuration(recipe.cooking_time) : undefined
         };
     });
+    console.log(response);
     return response;
 };
 

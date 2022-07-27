@@ -9,7 +9,7 @@ import {
     Box
 } from "@mui/material";
 
-type inputValuesType = { [key: number]: string; };
+type inputValuesType = Record<number, string>;
 interface IngredientsFilterFormProps {
     onIngredientsChange: (ingredients: string[]) => void;
 }
@@ -30,7 +30,7 @@ export function IngredientsFilterForm(props: IngredientsFilterFormProps) {
             return ingredients;
         };
         props.onIngredientsChange(getIngredients());
-    }, [inputValues, props]);
+    }, [inputValues]);
 
     const renderInputs = (values: inputValuesType) => {
         const renderedInputs = [];
